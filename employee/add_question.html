@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css" />
+    <!-- Custom fonts for this template-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="
+     https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.all.min.js
+     "></script>
+    <link href="
+     https://cdn.jsdelivr.net/npm/sweetalert2@11.9.0/dist/sweetalert2.min.css
+     " rel="stylesheet">
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <title>Admin dasboard</title>
+    <style>
+        .card-header {
+            background-color: #2F9A6E;
+            color: white;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        option {
+            background-color: #FF9E06;
+            color: aliceblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" style="margin: auto;">
+        <div class="row ">
+            <div class="col-10">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Add Question</h2>
+                    </div>
+                    <div class="card-body">
+                        <form action="">
+                            <div class="mb-3">
+                                <label for="class" class="form-label">Class</label>
+                                <select class="form-select" aria-label="Default select example" id="class">
+                                    <option selected>Open this select menu</option>
+                                    <option value="9th">9<sup>th</sup></option>
+                                    <option value="10th">10<sup>th</sup></option>
+                                    <option value="11th">11<sup>th</sup></option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="class" class="form-label">Subject</label>
+                                <select class="form-select" aria-label="Default select example" id="class">
+                                    <option selected>Open this select menu</option>
+                                    <option value="pak_study">Pakistan Study</option>
+                                    <option value="computer">Computer Sceince</option>
+                                    <option value="Islamic">Islamiyat</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="class" class="form-label">Chapter</label>
+                                <select class="form-select" aria-label="Default select example" id="class">
+                                    <option selected>Open this select menu</option>
+                                    <option value="ideology">Ideology of Pakistan</option>
+                                    <option value="history">History</option>
+                                    <option value="independance">independance</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="class" class="form-label">Topic</label>
+                                <select class="form-select" aria-label="Default select example" id="class">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">Ideology 1</option>
+                                    <option value="2">Ideology 2</option>
+                                    <option value="3">Ideology 3</option>
+                                </select>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <textarea type="text" class="form-control" id="floatingInput"
+                                    placeholder="Add question here..." rows="2"></textarea>
+                                <label for="floatingInput">Question</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="option_a" placeholder="option a">
+                                <label for="option_a">(a)</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="option_b" placeholder="option b">
+                                <label for="option_b">(b)</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="option_c" placeholder="option c">
+                                <label for="option_c">(c)</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="option_d" placeholder="option d">
+                                <label for="option_d">(d)</label>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <button type="submit" class="btn btn-primary ">Add</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+</body>
+
+</html>

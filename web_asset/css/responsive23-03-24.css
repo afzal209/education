@@ -1,0 +1,91 @@
+@media all and (max-width:1199px) {
+    .listings li {
+        min-height: 190px;
+    }
+    .navbar-collapse {
+        width: 72%;
+        float: left;
+    }
+    .quiz label {
+        width: 92%;
+    }
+    .blog li img {
+        margin-bottom: 15px;
+    }
+    .page-section.blog-page h1 {
+        text-align: left;
+    }
+}
+
+@media all and (max-width:990px) {
+    .navbar-collapse {
+        width: 60%;
+    }
+    .navbar-collapse {
+        width: auto;
+    }
+    .menubar nav li a {
+        padding: 16px 5px;
+        font-size: 14px;
+    }
+    .content .listing li {
+        width: 100%;
+    }
+    .content h1.border {
+        margin: 0;
+    }
+    .quiz label {
+        width: 95%;
+    }
+}
+
+@media all and (max-width:767px) {
+    .listing li {
+        width: 100%;
+    }
+    .navbar-collapse {
+        width: 100%;
+    }
+    .listing {
+        width: 90%;
+        float: left;
+        padding: 0;
+        margin: 0 30px;
+    }
+    .page-section h1 {
+        text-align: center;
+    }
+    .listings li {
+        min-height: 180px;
+    }
+    .carousel {
+        height: auto;
+    }
+    .navbar-header {
+        width: 50%;
+        float: right;
+    }
+    .quiz label {
+        width: 93%;
+    }
+    .page-section.blog-page h1 {
+        font-size: 25px;
+    }
+}
+
+@media all and (max-width:580px) {
+    .listings li {
+        min-height: 180px;
+        float: none;
+        margin: 0 auto;
+    }
+    .navbar-header {
+        width: 25%;
+    }
+    .listing {
+        width: auto;
+    }
+    .quiz label {
+        width: 80%;
+    }
+}
