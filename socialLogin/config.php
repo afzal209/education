@@ -3,7 +3,7 @@ require_once 'google-api/vendor/autoload.php';
 // session_start();
 $clientID = '424279592981-hts1a7l2vm2nholmikl2lv2n4ah4h595.apps.googleusercontent.com';
 $clientSecret = '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';
-$redirectUri = 'https://mutaala.com/login.php';
+$redirectUri = 'https://safasolo.com/login.php';
 
 // Initialize the $client object
 $client = new Google_Client();
