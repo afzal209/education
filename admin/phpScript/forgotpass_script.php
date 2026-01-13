@@ -15,7 +15,7 @@ if(isset($_POST['submit'])){
             $str_sub=substr($str_shu,0 ,15);
             $subject="Reset Password";
             //$url="http://www.thepakdev.com/quiz/AlRazzak/resetpassword.php?token=$str_sub&email=$email";           
-            $message="To reset your password,please visit this <a href='https://www.dashing.pk/resetpassword.php?token=$str_sub&email=$email'>Link</a>";
+            $message="To reset your password,please visit this <a href='https://safasolo.com/resetpassword.php?token=$str_sub&email=$email'>Link</a>";
             
             $headers= "From: danialjafri88@gmail.com";
             $headers .= "MIME-Version: 1.0" . "\r\n";

@@ -4,7 +4,7 @@ require_once '../vendor/autoload.php';
 // init configuration
 $clientID = '424279592981-hts1a7l2vm2nholmikl2lv2n4ah4h595.apps.googleusercontent.com';
 $clientSecret = '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';
-$redirectUri = 'http://localhost/mubalig/socialLogin/redirect.php';
+$redirectUri = 'https://safasolo.com/redirect.php';
 
 // create Client Request to access Google API
 $client = new Google_Client();
