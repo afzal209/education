@@ -16,11 +16,6 @@ if(isset($_POST['submit'])){
             $subject="Reset Password";
             //$url="http://www.thepakdev.com/quiz/AlRazzak/resetpassword.php?token=$str_sub&email=$email";           
             $message="To reset your password,please visit this <a href='https://safasolo.com/resetpassword.php?token=$str_sub&email=$email'>Link</a>";
-            
-            // $headers= "From: danialjafri88@gmail.com";
-            // $headers .= "MIME-Version: 1.0" . "\r\n";
-            // $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-
             $headers  = "From: danialjafri88@gmail.com\r\n";
             $headers .= "MIME-Version: 1.0\r\n";
             $headers .= "Content-type: text/html; charset=UTF-8\r\n";   
