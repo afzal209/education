@@ -3,7 +3,8 @@
 // ob_start();
 @session_start();
 // $con=mysqli_connect('sdb-c.hosting.stackcp.net','peekay-3137311ee4','peekay123!@#','peekay-3137311ee4');
-$con = mysqli_connect('localhost', 'root', '', 'mubalig');
+// $con = mysqli_connect('localhost', 'root', '', 'mubalig');
+$con=mysqli_connect('localhost','safascym_education','education123!@#','safascym_education');
 
 // $con=mysqli_connect('localhost','root','','educator');
 
