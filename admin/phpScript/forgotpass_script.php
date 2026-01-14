@@ -22,7 +22,8 @@ if (isset($_POST['submit'])) {
         $base_url = $protocol . "://" . $_SERVER['HTTP_HOST'];
 
         // 🔹 Reset URL
-        $reset_url = $base_url . "/resetpassword.php?token=$token&email=$email";
+        // $reset_url = $base_url . "/resetpassword.php?token=$token&email=$email";
+        $reset_url = $base_url . "/resetpassword.php?token=" . urlencode($token) . "&email=" . urlencode($email);
 
         // Email content
         $subject = "Reset Your Password";
