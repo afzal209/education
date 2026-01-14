@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
 
         // 🔹 Reset URL
         // $reset_url = $base_url . "/resetpassword.php?token=$token&email=$email";
-        $reset_url = $base_url . "/resetpassword.php?token=" . urlencode($token) . "&email=" . urlencode($email);
+        $reset_url = $base_url . "/admin/resetpassword.php?token=" . urlencode($token) . "&email=" . urlencode($email);
 
         // Email content
         $subject = "Reset Your Password";
