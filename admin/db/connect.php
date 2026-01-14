@@ -1,7 +1,8 @@
 <?php
 ob_start();
 @session_start();
-$con=mysqli_connect('localhost','moallnuf_mutaala','mutaala123!@#','moallnuf_mutaala');
+// $con=mysqli_connect('localhost','moallnuf_mutaala','mutaala123!@#','moallnuf_mutaala');
+$con=mysqli_connect('localhost','safascym_education','education123!@#','safascym_education');
 // $con = mysqli_connect('localhost', 'root', '', 'mubalig');
 // $con=mysqli_connect('localhost','root','','educator');
 
