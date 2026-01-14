@@ -67,7 +67,8 @@
                                         $hash = password_hash($new ,PASSWORD_DEFAULT);
                                     
                                          if (password_verify($confirm,$hash)) {
-                                            //  echo 'equal';
+                                             echo "update user set password='$hash',token='' where email='$email'";
+                                             exit;
                                             //$hash = password_hash($new,PASSWORD_BCRYPT);
                                             $query=mysqli_query($con,"update user set password='$hash',token='' where email='$email'");
                                             // echo $query;
