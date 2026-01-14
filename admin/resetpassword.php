@@ -32,7 +32,7 @@
                             <div class="col-lg-8 col-md-8">
                                 <h3 class="mb-30 text-center">Reset Password Form</h3>
                                 
-									<form class="contactform" method="post">
+									<form class="contactform" method="post" action="#">
                                     <?php
 									if(@$_GET['response'] != ''){
                                         echo '  <div class="alert alert-'.@$_GET['class'].'">
@@ -67,8 +67,7 @@
                                         $hash = password_hash($new ,PASSWORD_DEFAULT);
                                     
                                          if (password_verify($confirm,$hash)) {
-                                             echo "update user set password='$hash',token='' where email='$email'";
-                                             exit;
+                                            //  echo 'equal';
                                             //$hash = password_hash($new,PASSWORD_BCRYPT);
                                             $query=mysqli_query($con,"update user set password='$hash',token='' where email='$email'");
                                             // echo $query;
