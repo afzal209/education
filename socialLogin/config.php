@@ -1,9 +1,11 @@
 <?php
 require_once 'google-api/vendor/autoload.php';
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https" : "http";
+        $base_url = $protocol . "://" . $_SERVER['HTTP_HOST'];
 // session_start();
 $clientID = '424279592981-hts1a7l2vm2nholmikl2lv2n4ah4h595.apps.googleusercontent.com';
 $clientSecret = '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';
-$redirectUri = 'https://safasolo.com/login.php';
+$redirectUri = $base_url.'/login.php';
 
 // Initialize the $client object
 $client = new Google_Client();
