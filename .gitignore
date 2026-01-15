@@ -1,2 +1,2 @@
-db/*
-admin/db/*
+db/connect.php
+admin/db/connect.php
