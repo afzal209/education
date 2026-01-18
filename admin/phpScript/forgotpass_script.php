@@ -2,7 +2,8 @@
 if (isset($_POST['submit'])) {
 
     include('../db/connect.php');
-
+include_once '../../function/query.php';
+$get_url = get_url($con);
     if (empty($_POST['email'])) {
         header('location: ../forgetpassword.php?response=error&class=danger&message=Email is required');
         exit;
@@ -23,7 +24,7 @@ if (isset($_POST['submit'])) {
 
         // 🔹 Reset URL
         // $reset_url = $base_url . "/resetpassword.php?token=$token&email=$email";
-        $reset_url = $base_url . "/admin/resetpassword.php?token=" . urlencode($token) . "&email=$email";
+        $reset_url = $get_url['url'] . "admin/resetpassword.php?token=" . urlencode($token) . "&email=$email";
 
         // Email content
         $subject = "Reset Your Password";

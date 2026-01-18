@@ -3,7 +3,8 @@
 if (isset($_POST['submit'])) {
 
  	include('../db/connect.php');
-
+include_once '../../function/query.php';
+$get_url = get_url($con);
  	if( empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password'])  ){
 
         header('location:../adduser.php?response=error&class=danger&message=All fields are mandatory.');
@@ -51,7 +52,7 @@ if (isset($_POST['submit'])) {
 							if ($user_permission) {
 									$to = $email;
 									$subject = "Email Verification";
-									$message = "<a href='https://educator.pk/verifyEmail.php?activation_code=$activation_code'>Register Account</a>";
+									$message = "<a href='$get_url[url]verifyEmail.php?activation_code=$activation_code'>Register Account</a>";
 									$headers = "From: danialjafri88@gmail.com";
 									$headers .= "MIME-Version: 1.0" . "\r\n";
 									$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";

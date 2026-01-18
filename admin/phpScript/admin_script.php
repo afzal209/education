@@ -2,6 +2,8 @@
 
 if (isset($_POST['submit'])) {
     include('../db/connect.php');
+    include_once '../../function/query.php';
+    $get_url = get_url($con);
     if( empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password']) ){
        header('location:../adminregistration.php?response=error&class=danger&message=All fields are mandatory.');
    }
@@ -31,17 +33,18 @@ if (isset($_POST['submit'])) {
         //     }  
         
         
-        if ($permission) {
+        if ($user_permission) {
 
     $to = $email;
     $subject = "Email Verification";
 
     // Base URL
-    $base_url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'];
+    // $base_url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'];
 
     // Verification URL
-    $verify_url = $base_url . "/admin/verifyEmail.php?activation_code=" . urlencode($activation_code);
-
+    $verify_url = $get_url['url']. "admin/verifyEmail.php?activation_code=" . urlencode($activation_code);
+            // echo $verify_url;
+            // exit;
     // Email message
     $message = "
     <html>
