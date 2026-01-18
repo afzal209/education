@@ -1,51 +1,77 @@
 <?php
-    include 'db/connect.php';
-    if(isset($_GET['email']) && isset($_GET['token'])){
-        
-    $email=$_GET['email'];
-    $token=$_GET['token'];
+ob_start();
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
-									   if (isset($_POST['submit'])) {
-                                        include 'db/connect.php';
-                                        $email=$_POST['email'];
-                                        $token=$_POST['token'];
-                                    
-                                    
-                                        
-                                        $new=$_POST['newpassword'];
-                                        $confirm=$_POST['confirmpassword'];
-                                    
-                                        $hash = password_hash($new ,PASSWORD_DEFAULT);
-                                    
-                                         if (password_verify($confirm,$hash)) {
-                                            //  echo 'equal';
-                                            //$hash = password_hash($new,PASSWORD_BCRYPT);
-                                            $query=mysqli_query($con,"update user set password='$hash',token='' where email='$email'");
-                                            // echo $query;
-                                            if ($query) {
-                                                //echo $query;
-                                                header(' location: login.php?response=success&class=success&message=Password Change Successfully!');
-                                            } else {
-                                                //echo $query;
-                                    
-                                                header('location:forgetpassword.php?response=error&class=danger&message=Kindly forgot Password Again');
-                                            }
-                                            
-                                         } 
-                                        //  else {
-                                        //      header('location: ../resetpassword.php?token='.$token.'&email='.$email.'&response=error&class=danger&message=Password not Match!');
-                                        //  }
-                                    
-                                    } 
-                                    
+include 'db/connect.php';
 
-    $select=mysqli_query($con,"select id from user where email='$email' and token='$token'");
-    if(mysqli_num_rows($select) > 0){
-        include_once 'includeFile/header.php'; 
-        ch_title("Reset Password");
-        include_once 'includeFile/navbar.php';
-        include 'phpScript/resetpassword_script.php';
+/* ======================
+   PASSWORD UPDATE LOGIC
+====================== */
+if (isset($_POST['submit'])) {
+
+    $email   = mysqli_real_escape_string($con, $_POST['email']);
+    $token   = mysqli_real_escape_string($con, $_POST['token']);
+    $new     = $_POST['newpassword'];
+    $confirm = $_POST['confirmpassword'];
+
+    // Check password match
+    if ($new !== $confirm) {
+        header("location: resetpassword.php?token=$token&email=$email&response=error&class=danger&message=Passwords do not match");
+        exit;
+    }
+
+    // Hash password
+    $hash = password_hash($new, PASSWORD_DEFAULT);
+
+    // Update password & clear token
+    $update = mysqli_query(
+        $con,
+        "UPDATE user 
+         SET password='$hash', token='' 
+         WHERE email='$email' AND token='$token'"
+    );
+
+    if ($update && mysqli_affected_rows($con) > 0) {
+        header("location: login.php?response=success&class=success&message=Password changed successfully");
+        exit;
+    } else {
+        header("location: forgetpassword.php?response=error&class=danger&message=Invalid or expired link");
+        exit;
+    }
+}
+
+/* ======================
+   TOKEN VALIDATION
+====================== */
+if (isset($_GET['email']) && isset($_GET['token'])) {
+
+    $email = mysqli_real_escape_string($con, $_GET['email']);
+    $token = mysqli_real_escape_string($con, $_GET['token']);
+
+    $check = mysqli_query(
+        $con,
+        "SELECT id FROM user WHERE email='$email' AND token='$token'"
+    );
+
+    if (mysqli_num_rows($check) == 0) {
+        header("location: forgetpassword.php?response=error&class=danger&message=Link expired");
+        exit;
+    }
+
+} else {
+    header("location: login.php");
+    exit;
+}
 ?>
+
+<?php
+include_once 'includeFile/header.php';
+ch_title("Reset Password");
+include_once 'includeFile/navbar.php';
+?>
+
+
 
             <section class="banner-area relative" id="home">	
 				<div class="overlay overlay-bg"></div>
@@ -94,15 +120,5 @@
                     </div>
                 </div>
             </div>  
-<?php
-    include_once 'includeFile/footer.php'; 
-    }
-    else {
-        header('location: forgetpassword.php?response=error&class=danger&message=Link expired');
-    } 
-        }
-        else {
-        header("location: login.php");
-        exit();
-    }
-?>
+<?php include_once 'includeFile/footer.php'; ?>
+<?php ob_end_flush(); ?>
