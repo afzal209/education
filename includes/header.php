@@ -10,9 +10,11 @@
 
     <!-- Css library -->
     <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/education/config.php';
+    
     // Css Library
-    include('includes/css.php');
-    require_once 'function/title_script.php';
+    include(BASE_PATH.'includes/css.php');
+    require_once(BASE_PATH.'function/title_script.php');
     
     ?>
     <title>Moalym | </title>
