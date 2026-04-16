@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
         // echo $query;
         if ($query) {
             //echo $query;
-        	header(' location: ../login.php?response=success&class=success&message=Password Change Successfully!');
+        	header(' location: ../index.php?response=success&class=success&message=Password Change Successfully!');
         } else {
             //echo $query;
 

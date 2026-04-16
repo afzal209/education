@@ -1,9 +1,10 @@
 <?php
 if (isset($_POST['submit'])) {
 
-    include('../db/connect.php');
-include_once '../../function/query.php';
-$get_url = get_url($con);
+require_once $_SERVER['DOCUMENT_ROOT'].'/education/config.php';
+
+    include(BASE_PATH.'/db/connect.php');
+
     if (empty($_POST['email'])) {
         header('location: ../forgetpassword.php?response=error&class=danger&message=Email is required');
         exit;
@@ -23,9 +24,10 @@ $get_url = get_url($con);
         $base_url = $protocol . "://" . $_SERVER['HTTP_HOST'];
 
         // 🔹 Reset URL
-        // $reset_url = $base_url . "/resetpassword.php?token=$token&email=$email";
-        $reset_url = $get_url['url'] . "admin/resetpassword.php?token=" . urlencode($token) . "&email=$email";
+        $reset_url = $base_url . "/education/admin/resetpassword.php?token=$token&email=" . urlencode($email);
 
+        // echo $reset_url;
+        // exit;
         // Email content
         $subject = "Reset Your Password";
 

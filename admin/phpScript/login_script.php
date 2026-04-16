@@ -97,7 +97,7 @@ if(isset($_POST['submit'])){
 
 	else{
 
-		header('location: ../login.php?response=error&class=danger&message=Invalid Credentials!');
+		header('location: ../index.php?response=error&class=danger&message=Invalid Credentials!');
 
 	}
 

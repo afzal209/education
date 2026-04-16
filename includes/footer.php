@@ -16,7 +16,7 @@
 </script>
 <?php 
 // Js Libray
-include('includes/script.php'); 
+include(BASE_PATH.'includes/script.php'); 
 ?>
 
 </body>

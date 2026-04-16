@@ -1,49 +1,41 @@
 <?php
-	include_once 'includeFile/header.php'; 
-	ch_title("Forget Password");
-    include_once 'includeFile/navbar.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/education/config.php';
+	include_once(BASE_PATH .'/includes/header.php'); 
+	ch_title("Moalym", "Forget Password");
 ?>
 
-            <section class="banner-area relative" id="home">	
-				<div class="overlay overlay-bg"></div>
-				<div class="container">				
-					<div class="row d-flex align-items-center justify-content-center">
-						<div class="about-content col-lg-12">
-							<h1 class="text-white">
-                                Forget Password Page				
-							</h1>	
-							<!-- <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span><a href="blog-home.html">Blog </a> <span class="lnr lnr-arrow-right"></span> <a href="blog-single.html"> Blog Details Page</a></p> -->
-						</div>	
-					</div>
-				</div>
-			</section>
-            <div class="whole-wrap">
-                <div class="container" >
-                    <div class="section-top-border">
-                        <div class="row">
-                            <div class="col-lg-8 col-md-8">
-                                <h3 class="mb-30 text-center">Forget Password Form</h3>
-                                <?php 
-                                        if(@$_GET['response'] != ''){
-                                            echo '  <div class="alert alert-'.@$_GET['class'].'">
-                                                        <strong>'.ucfirst(@$_GET['response']).'!</strong> '.@$_GET['message'].'
-                                                    </div>';
-                                                }
-                                    ?>
-                                <form  method="POST" action="phpScript/forgotpass_script.php">
-                                    <div class="mt-10">
-                                        <input type="email" name="email" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email'" required class="single-input">
-                                    </div>
-                                    <div class="button-group-area mt-40">
-                                        <input class="genric-btn success-border circle" type="submit" name="submit" value="Forget Password">     
-                                        <!-- <button class="genric-btn success-border circle arrow">Login<span class="lnr lnr-arrow-right"></span></button> -->
-                                    </div>                                   
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+            <div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-12">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h2>Forget Password</h2>
                 </div>
-            </div>  
+                <div class="card-body">
+                    <?php 
+                        if (!empty($_GET['response'])) {
+                            echo '<div class="alert alert-' . htmlspecialchars($_GET['class']) . '">
+                                    <strong>' . ucfirst(htmlspecialchars($_GET['response'])) . '!</strong> ' . htmlspecialchars($_GET['message']) . '
+                                  </div>';
+                        }
+                    ?>
+                    <form method="POST" action="phpScript/forgotpass_script.php">
+                        <div class="form-floating mb-3">
+                            <input type="text" name="email" class="form-control" id="email" placeholder="Email..." onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email'" />
+                            <label for="email">Email</label>
+                        </div>
+                    
+                        <div class="d-flex flex-wrap gap-2">
+                            <button type="submit" name="submit" class="btn btn-primary flex-grow-1">Forget Password</button>
+                            
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <?php
-    include_once 'includeFile/footer.php'; 
+    include_once(BASE_PATH.'/includes/footer.php'); 
 ?>
