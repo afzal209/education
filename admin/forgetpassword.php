@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/education/config.php';
+require_once dirname(__DIR__) .'/config.php';
 	include_once(BASE_PATH .'/includes/header.php'); 
 	ch_title("Moalym", "Forget Password");
 ?>
@@ -19,7 +19,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/education/config.php';
                                   </div>';
                         }
                     ?>
-                    <form method="POST" action="phpScript/forgotpass_script.php">
+                    <form method="POST" action="<?php echo BASE_URL; ?>admin/phpScript/forgotpass_script.php">
                         <div class="form-floating mb-3">
                             <input type="text" name="email" class="form-control" id="email" placeholder="Email..." onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email'" />
                             <label for="email">Email</label>

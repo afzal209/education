@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/education/config.php';
+require_once dirname(__DIR__) .'/config.php';
 // echo BASE_PATH;
 // exit;
 
@@ -17,7 +17,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/education/config.php';
    
 ?>
 
-          <div class="container mt-5">
+<div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6 col-12">
             <div class="card">
@@ -38,7 +38,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/education/config.php';
                             <label for="email">Email</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" name="password" class="form-control" id="password" placeholder="Password" />
+                            <input type="password" name="password" class="form-control" id="password"
+                                placeholder="Password" />
                             <label for="password">Password</label>
                         </div>
                         <div class="d-flex flex-wrap gap-2">
@@ -48,7 +49,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/education/config.php';
                             <!-- <a href="javascript:void(0)" onclick="window.location ='<?php echo $authUrl ?>';" 
                                class="btn btn-secondary flex-grow-1">
                                 <i class="fa fa-google"></i> Login with Google
-                            </a> -->    
+                            </a> -->
                         </div>
                     </form>
                 </div>

@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/education/config.php';
+require_once dirname(__DIR__) .'/config.php';
    include(BASE_PATH.'db/connect.php');
    ob_start();
     if(isset($_GET['email']) && isset($_GET['token'])){
@@ -33,13 +33,13 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/education/config.php';
 
                         <div class="form-floating mb-3">
                             <input type="password" name="newpassword" class="form-control" id="newpassword"
-                                placeholder="Password" onfocus="this.placeholder = ''"
+                                placeholder="Enter New Password" onfocus="this.placeholder = ''"
                                 onblur="this.placeholder = 'Enter New Password'" required />
                             <label for="password">Password</label>
                         </div>
                         <div class="form-floating mb-3">
                             <input type="password" name="confirmpassword" class="form-control" id="confirmpassword"
-                                placeholder="Password" onfocus="this.placeholder = ''"
+                                placeholder="Enter Confirm Password" onfocus="this.placeholder = ''"
                                 onblur="this.placeholder = 'Enter Confirm Password'" required />
                             <label for="password">Password</label>
                         </div>
