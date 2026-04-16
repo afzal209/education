@@ -1,18 +1,25 @@
 <?php
 include 'web_include/header.php';
 include_once 'db/connect.php';
+include_once 'function/query.php';
 ch_title("Moalym", "Index");
 
 include_once 'function/query.php';
-$actual_link = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https" : "http";
+        $base_url = $protocol . "://" . $_SERVER['HTTP_HOST'] .$_SERVER['REQUEST_URI'];
+store_url($con,$base_url);
+        // echo $base_url;
+        // exit;
+// $actual_link = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 // echo $actual_link;
-$sql = "select * from setting";
-$query = mysqli_query($con,$sql);
-if(mysqli_num_rows($query) == 0){
+// $sql = "select * from setting";
+// $query = mysqli_query($con,$sql);
+// if(mysqli_num_rows($query) == 0){
    
-    $isert_sql = "insert into setting(url) values('$actual_link')";
-    mysqli_query($con,$isert_sql);
-}
+//     $isert_sql = "insert into setting(url) values('$base_url')";
+//     mysqli_query($con,$isert_sql);
+// }
 ?>
 
 <?php
