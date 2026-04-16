@@ -1,3 +1,4 @@
 db/*
 admin/db/*  
 config.php
+socialLogin/config.php

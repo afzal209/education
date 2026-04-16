@@ -10,7 +10,7 @@
 
     <!-- Css library -->
     <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/education/config.php';
+require_once dirname(__DIR__) .'/config.php';
     
     // Css Library
     include(BASE_PATH.'includes/css.php');

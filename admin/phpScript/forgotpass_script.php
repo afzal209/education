@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['submit'])) {
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/education/config.php';
+require_once dirname(dirname(__DIR__)) .'/config.php';
 
     include(BASE_PATH.'/db/connect.php');
 
@@ -24,7 +24,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/education/config.php';
         $base_url = $protocol . "://" . $_SERVER['HTTP_HOST'];
 
         // 🔹 Reset URL
-        $reset_url = $base_url . "/education/admin/resetpassword.php?token=$token&email=" . urlencode($email);
+        $reset_url = BASE_URL . "admin/resetpassword.php?token=$token&email=" . urlencode($email);
 
         // echo $reset_url;
         // exit;
