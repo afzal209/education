@@ -1,8 +1,18 @@
 <?php 
-    include_once 'db/connect.php';
+    // include_once 'db/connect.php';
+
+    require_once dirname(__DIR__) .'/config.php';
+// echo BASE_PATH;
+// exit;
+
+
+    // include(BASE_PATH.'db/connect.php');
+
+     include(BASE_PATH.'db/connect.php');
+
     if(!isset($_SESSION['user']['email']))
     {
-        header('location:login.php');
+        header('location:index.php');
     }
     
     if ($_SESSION['user']['role'] == 'admin') {
@@ -11,86 +21,138 @@
 
 
 
-    <?php
-    include_once 'includeFile/header.php'; 
-	ch_title("Add User");
-    include_once 'includeFile/navbar.php';
+<?php
+   include_once(BASE_PATH .'/includes/header.php'); 
+	ch_title("Moalym", "Add User");
+   
+    // include_once 'includeFile/navbar.php';
     ?>
-        <section class="banner-area relative" id="home">	
-				<div class="overlay overlay-bg"></div>
-				<div class="container">				
-					<div class="row d-flex align-items-center justify-content-center">
-						<div class="about-content col-lg-12">
-							<h1 class="text-white">
-								Add User				
-							</h1>	
-							<!-- <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span><a href="blog-home.html">Blog </a> <span class="lnr lnr-arrow-right"></span> <a href="blog-single.html"> Blog Details Page</a></p> -->
-						</div>	
-					</div>
-				</div>
-			</section>
+<div id="wrapper">
 
-            <div class="whole-wrap">
-                <div class="container" >
-                    <div class="section-top-border">
-                        <div class="row">
-                            <div class="col-lg-8 col-md-8">
-                                <h3 class="mb-30 text-center">Add User</h3>
-                                <?php 
-                                    if(@$_GET['response'] != ''){
-                                        echo '  <div class="alert alert-'.@$_GET['class'].'">
-                                                    <strong>'.ucfirst(@$_GET['response']).'!</strong> '.@$_GET['message'].'
-                                                </div>';
-                                            }
-                                ?>
-                                <form  method="POST" action="phpScript/user_script.php">
-                                    <div class="mt-10">
-                                        <input type="text" name="username" id="username" placeholder="Enter Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Username'" required class="single-input">
-                                    </div>
-                                    <div class="mt-10">
-                                        <input type="email" name="email" id="email" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email'" required class="single-input">
-                                    </div>
-                                    <div class="mt-10">
-                                        <input type="password" name="password" id="password" placeholder="Enter Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Password'" required class="single-input">
-                                    </div>
-                                    <div class="form-group mt-10">
+    <!-- Sidebar -->
+    <?php 
+    include_once(BASE_PATH .'/includes/sidebar.php');
+    ?>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <?php 
+        include_once(BASE_PATH .'/includes/topbar.php')
+        ?>
+
+
+            <main id="main" class="main">
+                <div class="container" style="margin: auto;">
+                    <div class="row ">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2>Add User</h2>
+                                </div>
+                                <div class="card-body">
+                                    <?php 
+                                        if(@$_GET['response'] != ''){
+                                            echo '  <div class="alert alert-'.@$_GET['class'].'">
+                                                        <strong>'.ucfirst(@$_GET['response']).'!</strong> '.@$_GET['message'].'
+                                                    </div>';
+                                                }
+                                    ?>
+                                    <form method="POST" action="<?php echo BASE_URL; ?>phpScript/user_script.php"
+                                        enctype="multipart/form-data">
+
+                                        <!-- Username -->
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="username" name="username"
+                                                placeholder="Enter Username" required>
+                                            <label for="username">Enter Username</label>
+                                        </div>
+
+                                        <!-- Email -->
+                                        <div class="form-floating mb-3">
+                                            <input type="email" class="form-control" id="email" name="email"
+                                                placeholder="Enter Email" required>
+                                            <label for="email">Enter Email</label>
+                                        </div>
+
+                                        <!-- Password -->
+                                        <div class="form-floating mb-3">
+                                            <input type="password" class="form-control" id="password" name="password"
+                                                placeholder="Enter Password" required>
+                                            <label for="password">Enter Password</label>
+                                        </div>
+
+                                        <!-- Role -->
+                                        <div class="mb-3">
+                                            <label for="role" class="form-label">Type</label>
                                             <select class="form-control" name="role" id="role" onchange="ck_type()">
-                                                <option value="" selected>Type</option>
+                                                <option value="" selected>Select Type</option>
                                                 <option value="subadmin">Sub Admin</option>
                                                 <option value="editor">Editor</option>
                                                 <option value="jobeditor">Job Editor</option>
                                                 <option value="testeditor">Test Editor</option>
                                                 <option value="neweditor">New Editor</option>
                                             </select>
-                                    </div>
-                                    <div class="form-group mt-10">
+                                        </div>
+
+                                        <!-- Assign Academic -->
+                                        <div class="mb-3">
+                                            <label for="assignacademic" class="form-label">Assign Academic</label>
                                             <select class="form-control" name="assignacademic" id="assignacademic">
-                                                <option value="" selected>Assign Academic</option>
-                                            <?php
-                                                    $query=mysqli_query($con,"select * from academic");
-                                                    while ($row=mysqli_fetch_assoc($query)) { 
-                                                    ?>
-                                                <option value="<?php echo $row['id'];?>"><?php echo $row['academic_name'];?></option>
-                                            <?php 
-                                                }
-                                            ?>
+                                                <option value="" selected>Select Academic</option>
+                                                <?php
+                $query = mysqli_query($con,"select * from academic");
+                while ($row = mysqli_fetch_assoc($query)) {
+            ?>
+                                                <option value="<?php echo $row['id']; ?>">
+                                                    <?php echo $row['academic_name']; ?>
+                                                </option>
+                                                <?php } ?>
                                             </select>
-                                    </div>
-                                    <div class="form-group mt-10">
-                                        <select class="form-control selectpicker" multiple data-live-search="true" name="assignsubject[]" id="assignsubject">
-                                            <option value=""></option>
-                                        </select>                                                
-                                    </div>
-                                    <div class="button-group-area mt-40">
-                                        <input class="genric-btn success-border circle" type="submit" name="submit" value="Add">
-                                    </div>                                   
-                                </form>
+                                        </div>
+
+                                        <!-- Assign Subject -->
+                                        <div class="mb-3">
+                                            <label for="assignsubject" class="form-label">Assign Subject</label>
+                                            <select class="form-control selectpicker" multiple data-live-search="true"
+                                                name="assignsubject[]" id="assignsubject">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+
+                                        <!-- Submit -->
+                                        <div class="col-12 mb-3">
+                                            <button type="submit" class="btn btn-primary" name="submit">Add</button>
+                                        </div>
+
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>  
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+            </main><!-- End #main -->
+
+            <!-- Footer -->
+            <?php 
+       include(BASE_PATH .'/includes/copy_write.php')
+       ?>
+        </div>
+    </div>
+</div>
+<?php
+    // include('includeFile/footer.php');
+
+     include_once(BASE_PATH.'/includes/footer.php'); 
+        }
+    ?>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             <script>
             $(document).ready(function(e){
                 $('#assignacademic').on('change', function(e){
@@ -132,7 +194,3 @@
                 }
             }
             </script>
-    <?php
-    include('includeFile/footer.php');
-        }
-    ?>
