@@ -1,46 +1,49 @@
+
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar Brand - Admin -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../pages/index.php">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <?php 
         // print_r($_SESSION);
         if (isset($_SESSION['data']['local']) ) {
             ?>
-            <div class="sidebar-brand-icon ">
+        <div class="sidebar-brand-icon ">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv7kL-nf9YogeeALYYGIWQ1eWO7CZ_qQhsng&usqp=CAU"
                 alt="" width="40px" height="40px">
         </div>
         <div class="sidebar-brand-text mx-3"> <?=$_SESSION['data']['local']['username']?> </div>
-             
-            <?php
+
+        <?php
         }
         elseif(isset($_SESSION['data']['social'])){
             ?>
-            <div class="sidebar-brand-icon ">
-            <img src="<?=$_SESSION['data']['social']['picture'] ?>"
-                alt="" width="40px" height="40px">
+        <div class="sidebar-brand-icon ">
+            <img src="<?=$_SESSION['data']['social']['picture'] ?>" alt="" width="40px" height="40px">
         </div>
         <div class="sidebar-brand-text mx-3"> <?=$_SESSION['data']['social']['full_name']?> </div>
-            <?php
+        <?php
         }
         else{
             ?>
-           <div class="sidebar-brand-icon ">
+        <div class="sidebar-brand-icon ">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv7kL-nf9YogeeALYYGIWQ1eWO7CZ_qQhsng&usqp=CAU"
                 alt="" width="40px" height="40px">
         </div>
         <div class="sidebar-brand-text mx-3"> Admin</div>
-            <?php
+        <?php
         }
         
         ?>
 
     </a>
 
-    <!-- Divider -->
-    <!--<hr class="sidebar-divider my-0">-->
+
 
     <!-- Nav Item - Dashboard -->
+    <?php 
+    //  print_r($_SESSION);
+     if(isset($_SESSION['data'])){
+        ?>
     <li class="nav-item active">
         <a class="nav-link" href="index.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -48,40 +51,34 @@
     </li>
 
 
-    <!-- Divider -->
-    <!-- <hr class="sidebar-divider"> -->
 
-    <!-- Heading -->
-    <!-- <div class="sidebar-heading">
-        Interface
-    </div> -->
-    
+
     <li class="nav-item">
         <a class="nav-link" href="add_test_subject.php">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Add Test Subject</span></a>
     </li>
-     <li class="nav-item">
+    <li class="nav-item">
         <a class="nav-link" href="view_test_subject.php">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>View Test Subject</span></a>
     </li>
-     <li class="nav-item">
+    <li class="nav-item">
         <a class="nav-link" href="add_test_chapter.php">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Add Test Chapter</span></a>
     </li>
-     <li class="nav-item">
+    <li class="nav-item">
         <a class="nav-link" href="view_test_chapter.php">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>View Test Chapter</span></a>
     </li>
-     <li class="nav-item">
+    <li class="nav-item">
         <a class="nav-link" href="add_test_topic.php">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Add Test topic</span></a>
     </li>
-     <li class="nav-item">
+    <li class="nav-item">
         <a class="nav-link" href="view_test_topic.php">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>view Test Topic</span></a>
@@ -91,128 +88,102 @@
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Add Test question</span></a>
     </li>
-     <li class="nav-item">
+    <li class="nav-item">
         <a class="nav-link" href="view_test_question.php">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>View Test Question</span></a>
     </li>
-    
-<!--<li class="nav-item">-->
-<!--    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#testMenu" aria-expanded="false" aria-controls="testMenu">-->
-<!--        <i class="fas fa-fw fa-book"></i>-->
-<!--        <span>Test Preparation</span>-->
-<!--    </a>-->
-<!--    <div id="testMenu" class="collapse">-->
-<!--        <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#testMenu1" aria-expanded="false" aria-controls="testMenu">-->
-<!--        <i class="fas fa-fw fa-book"></i>-->
-<!--        <span>Subject</span>-->
-<!--    </a>-->
-<!--        <div id="testMenu1" class="collapse">-->
-<!--            <div class="bg-white py-2 collapse-inner rounded">-->
-<!--                <a class="collapse-item" href="add_test_subject.php"><i class="fas fa-fw fa-plus"></i> Add Test Subject</a>-->
-                
-<!--                <a class="collapse-item" href="view_test_subject.php"><i class="fas fa-fw fa-plus"></i> View Test Subject</a>-->
-               
-<!--            </div>-->
-<!--        </div>-->
-<!--        <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#testMenu2" aria-expanded="false" aria-controls="testMenu">-->
-<!--        <i class="fas fa-fw fa-book"></i>-->
-<!--        <span>Chapter</span>-->
-<!--    </a>-->
-<!--        <div id="testMenu2" class="collapse">-->
-            
-<!--            <div class="bg-white py-2 collapse-inner rounded">-->
-<!--            <a class="collapse-item" href="add_test_chapter.php"><i class="fas fa-fw fa-folder"></i> Add Test Chapter</a>-->
-<!--            <a class="collapse-item" href="view_test_chapter.php"><i class="fas fa-fw fa-plus"></i> View Test Chapter</a>-->
-<!--            </div>-->
-<!--        </div>    -->
-<!--         <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#testMenu3" aria-expanded="false" aria-controls="testMenu">-->
-<!--        <i class="fas fa-fw fa-book"></i>-->
-<!--        <span>Topic</span>-->
-<!--    </a>-->
-<!--        <div id="testMenu3" class="collapse">-->
-<!--            <div class="bg-white py-2 collapse-inner rounded">-->
-<!--            <a class="collapse-item" href="add_test_topic.php"><i class="fas fa-fw fa-folder"></i> Add Test topic</a>-->
-<!--            <a class="collapse-item" href="view_test_topic.php"><i class="fas fa-fw fa-plus"></i> View Test Topic</a>-->
-<!--            </div>-->
-<!--        </div>   -->
-<!--         <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#testMenu4" aria-expanded="false" aria-controls="testMenu">-->
-<!--        <i class="fas fa-fw fa-book"></i>-->
-<!--        <span>Question</span>-->
-<!--    </a>-->
-<!--        <div id="testMenu4" class="collapse">-->
-<!--            <div class="bg-white py-2 collapse-inner rounded">-->
-<!--             <a class="collapse-item" href="add_test_question.php"><i class="fas fa-fw fa-folder"></i> Add Test Question</a>-->
-<!--              <a class="collapse-item" href="view_test_question.php"><i class="fas fa-fw fa-folder"></i> View Test Question</a>-->
-<!--            </div>-->
-<!--        </div>   -->
-<!--    </div>-->
-<!--</li>-->
-    <!--<li class="nav-item">-->
-    <!--    <a class="nav-link" href="add_test_subject.php">-->
-    <!--        <i class="fas fa-fw fa-chart-area"></i>-->
-    <!--        <span>Add Test Subject</span></a>-->
-    <!--</li>-->
-    <!--<li class="nav-item">-->
-    <!--    <a class="nav-link" href="add_test_chapter.php">-->
-    <!--        <i class="fas fa-fw fa-chart-area"></i>-->
-    <!--        <span>Add Test Chapter</span></a>-->
-    <!--</li>-->
-    <!--<li class="nav-item">-->
-    <!--    <a class="nav-link" href="add_academic.php">-->
-    <!--        <i class="fas fa-fw fa-chart-area"></i>-->
-    <!--        <span>Add Academic</span></a>-->
-    <!--</li>-->
-    <!--<li class="nav-item">-->
-    <!--    <a class="nav-link" href="view_subject.php">-->
-    <!--        <i class="fas fa-fw fa-chart-area"></i>-->
-    <!--        <span>View Subject</span></a>-->
-    <!--</li>-->
-    <!--<li class="nav-item">-->
-    <!--    <a class="nav-link" href="add_subject.php">-->
-    <!--        <i class="fas fa-fw fa-chart-area"></i>-->
-    <!--        <span>Add Subject</span></a>-->
-    <!--</li>-->
-    <!--<li class="nav-item">-->
-    <!--    <a class="nav-link" href="view_chapter.php">-->
-    <!--        <i class="fas fa-fw fa-chart-area"></i>-->
-    <!--        <span>View Chapter</span></a>-->
-    <!--</li>-->
-    <!--<li class="nav-item">-->
-    <!--    <a class="nav-link" href="add_chapter.php">-->
-    <!--        <i class="fas fa-fw fa-chart-area"></i>-->
-    <!--        <span>Add Chapter</span></a>-->
-    <!--</li>-->
-    <!--<li class="nav-item">-->
-    <!--    <a class="nav-link" href="view_topic.php">-->
-    <!--        <i class="fas fa-fw fa-chart-area"></i>-->
-    <!--        <span>View Topic</span></a>-->
-    <!--</li>-->
-    <!--<li class="nav-item">-->
-    <!--    <a class="nav-link" href="add_topic.php">-->
-    <!--        <i class="fas fa-fw fa-chart-area"></i>-->
-    <!--        <span>Add Topic</span></a>-->
-    <!--</li>-->
-    <!--<li class="nav-item">-->
-    <!--    <a class="nav-link" href="view_question.php">-->
-    <!--        <i class="fas fa-fw fa-chart-area"></i>-->
-    <!--        <span>View Question</span></a>-->
-    <!--</li>-->
-    <!--<li class="nav-item">-->
-    <!--    <a class="nav-link" href="add_question.php">-->
-    <!--        <i class="fas fa-fw fa-chart-area"></i>-->
-    <!--        <span>Add Question</span></a>-->
-    <!--</li>-->
-
-    <!-- <hr class="sidebar-divider d-none d-md-block">
+    <?php
+     }
+     else{
+        if (@$_SESSION['user']['role'] == 'admin') {
+        ?>
     <li class="nav-item">
-        <a class="nav-link" href="./report_list.php">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Create </span></a>
-    </li> -->
+
+        <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#userMenu" role="button"
+            aria-expanded="false" aria-controls="userMenu">
+
+            <i class="fas fa-user"></i>
+            User
+        </a>
+
+        <div id="userMenu" class="collapse" data-bs-parent="#accordionSidebar">
+
+            <a class="nav-link" href="viewuser.php">View User</a>
+            <a class="nav-link" href="adduser.php">Add User</a>
+
+        </div>
+
+    </li>
+   <li class="nav-item">
+
+    <a class="nav-link collapsed"
+       data-bs-toggle="collapse"
+       data-bs-target="#educationMenu"
+       role="button">
+
+        <i class="fas fa-graduation-cap"></i>
+        Education
+    </a>
+
+    <div id="educationMenu" class="collapse" data-bs-parent="#accordionSidebar">
+
+        <!-- Academy -->
+        <a class="nav-link collapsed ps-3"
+           data-bs-toggle="collapse"
+           data-bs-target="#academyMenu">
+            Academy
+        </a>
+
+        <div id="academyMenu" class="collapse ps-4">
+
+            <a class="nav-link ps-5" href="addacademic.php">Add Academy</a>
+            <a class="nav-link ps-5" href="viewacademic.php">View Academy</a>
+
+        </div>
+
+        <!-- Subject -->
+        <a class="nav-link collapsed ps-3"
+           data-bs-toggle="collapse"
+           data-bs-target="#subjectMenu">
+            Subject
+        </a>
+
+        <div id="subjectMenu" class="collapse ps-4">
+
+            <a class="nav-link ps-5" href="subject_add.php">Add</a>
+            <a class="nav-link ps-5" href="subject_view.php">View</a>
+
+        </div>
+
+        <!-- Topic -->
+        <a class="nav-link collapsed ps-3"
+           data-bs-toggle="collapse"
+           data-bs-target="#topicMenu">
+            Topic
+        </a>
+
+        <div id="topicMenu" class="collapse ps-4">
+
+            <a class="nav-link ps-5" href="topic_add.php">Add</a>
+            <a class="nav-link ps-5" href="topic_view.php">View</a>
+
+        </div>
+
+    </div>
+
+</li>
+    
+    <?php
+        }
+     }
+     ?>
+
+
+
     <li class="nav-item">
         <a class="nav-link" href="logout.php">
-            <i class="fas fa-fw fa-chart-area" aria-hidden="true"></i>
+            <i class="fas fa-right-from-bracket" aria-hidden="true"></i>
             <span>Logout</span></a>
     </li>
 
@@ -221,11 +192,7 @@
     </div>
 </ul>
 
-<script>
-    $(document).ready(function () {
-        $(".nav-link[data-bs-toggle='collapse']").click(function () {
-            var target = $(this).attr("data-bs-target");
-            $(target).collapse("toggle");
-        });
-    });
-</script>
+
+
+
+

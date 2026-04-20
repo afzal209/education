@@ -1,39 +1,50 @@
     <?php 
-        include_once 'db/connect.php';
-        if(!isset($_SESSION['user']['email']))
-        {
-            header('location:login.php');
-        }
-    
+        require_once dirname(__DIR__) .'/config.php';
+// echo BASE_PATH;
+// exit;
+
+
+    // include(BASE_PATH.'db/connect.php');
+
+     include(BASE_PATH.'db/connect.php');
+
+    if(!isset($_SESSION['user']['email']))
+    {
+        header('location:index.php');
+    }
+    ?>
+
+    <?php
+   include_once(BASE_PATH .'/includes/header.php'); 
+	ch_title("Moalym", "Add Academic");
+        ?>
+            <div id="wrapper">
+
+    <!-- Sidebar -->
+    <?php 
+    include_once(BASE_PATH .'/includes/sidebar.php');
+    ?>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <?php 
+        include_once(BASE_PATH .'/includes/topbar.php')
         ?>
 
 
-
-        <?php
-        include_once 'includeFile/header.php'; 
-        ch_title("Add Academic");
-        include_once 'includeFile/navbar.php';
-        ?>
-            <section class="banner-area relative" id="home">	
-                    <div class="overlay overlay-bg"></div>
-                    <div class="container">				
-                        <div class="row d-flex align-items-center justify-content-center">
-                            <div class="about-content col-lg-12">
-                                <h1 class="text-white">
-                                    Add Academic				
-                                </h1>	
-                                <!-- <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span><a href="blog-home.html">Blog </a> <span class="lnr lnr-arrow-right"></span> <a href="blog-single.html"> Blog Details Page</a></p> -->
-                            </div>	
-                        </div>
-                    </div>
-                </section>
-
-                <div class="whole-wrap">
-                    <div class="container" >
-                        <div class="section-top-border">
-                            <div class="row">
-                                <div class="col-lg-8 col-md-8">
-                                    <h3 class="mb-30 text-center">Add Academic</h3>
+            <main id="main" class="main">
+                <div class="container" style="margin: auto;">
+                    <div class="row ">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2>Add Academic</h2>
+                                </div>
+                                <div class="card-body">
                                     <?php 
                                         if(@$_GET['response'] != ''){
                                             echo '  <div class="alert alert-'.@$_GET['class'].'">
@@ -41,30 +52,63 @@
                                                     </div>';
                                                 }
                                     ?>
-                                    <form  method="POST" action="phpScript/academic_script.php" enctype="multipart/form-data">
-                                        <div class="mt-10">
-                                            <input type="file" name="image" id="image"  >
+                                    <form method="POST" action="<?php echo BASE_URL; ?>admin/phpScript/academic_script.php"
+                                        enctype="multipart/form-data">
+                                        <div class="form-floating mb-3">
+                                            <input type="file" class="form-control" id="image" name="image"
+                                                 required>
+                                            <label for="image">Select Image</label>
                                         </div>
-                                        <div class="mt-10">
-                                            <input type="text" name="name" id="name" placeholder="Enter Academic" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Academic'" required class="single-input">
+                                        <!-- Username -->
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="name" name="name"
+                                                placeholder="Enter Name" required>
+                                            <label for="name">Enter Name</label>
                                         </div>
-                                        <div class="form-group mt-10">
-                                                <select class="form-control" name="insert_type" id="insert_type" >
-                                                    <option value="" selected>Insert Type</option>
+
+                                        <!-- Email -->
+                                        
+
+                                        <!-- Password -->
+                                       
+
+                                        <!-- Role -->
+                                        <div class="mb-3">
+                                            <label for="role" class="form-label">Type</label>
+                                            <select class="form-control" name="insert_type" id="insert_type" >
+                                                <option value="" selected>Insert Type</option>
                                                     <option value="academic">Academic</option>
                                                     <option value="entrytest">Entry Test</option>
-                                                </select>
+                                            </select>
                                         </div>
-                                        <div class="button-group-area mt-40">
-                                            <input class="genric-btn success-border circle" type="submit" name="submit" value="Add">
-                                        </div>                                   
+
+                                        <!-- Assign Academic -->
+                                        
+                                        <!-- Submit -->
+                                        <div class="col-12 mb-3">
+                                            <input type="submit" class="btn btn-primary" name="submit" value="Add">
+                                        </div>
+
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>  
-            
-        <?php
-        include('includeFile/footer.php');
-        ?>
+                </div>
+
+
+            </main><!-- End #main -->
+
+            <!-- Footer -->
+            <?php 
+       include(BASE_PATH .'/includes/copy_write.php')
+       ?>
+        </div>
+    </div>
+</div>
+<?php
+    // include('includeFile/footer.php');
+
+     include_once(BASE_PATH.'/includes/footer.php'); 
+    
+    ?>
