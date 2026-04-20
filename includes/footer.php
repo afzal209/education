@@ -12,6 +12,44 @@
     function close(val){
         $(val).modal('hide');
     }
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+    const sidebar = document.getElementById("accordionSidebar");
+
+    // Create toggle button if not exists
+    const toggleBtn = document.getElementById("sidebarToggleTop");
+
+    if (toggleBtn && sidebar) {
+
+        toggleBtn.addEventListener("click", function () {
+
+            sidebar.classList.toggle("show");
+
+            // overlay handling
+            let overlay = document.querySelector(".sidebar-overlay");
+
+            if (!overlay) {
+                overlay = document.createElement("div");
+                overlay.classList.add("sidebar-overlay");
+                document.body.appendChild(overlay);
+            }
+
+            overlay.classList.toggle("active");
+
+            // close when clicking overlay
+            overlay.addEventListener("click", function () {
+                sidebar.classList.remove("show");
+                overlay.classList.remove("active");
+            });
+
+        });
+    }
+
+});
+
+    
 // })
 </script>
 <?php 
