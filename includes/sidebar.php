@@ -151,8 +151,8 @@
 
         <div id="subjectMenu" class="collapse ps-4">
 
-            <a class="nav-link ps-5" href="subject_add.php">Add</a>
-            <a class="nav-link ps-5" href="subject_view.php">View</a>
+            <a class="nav-link ps-5" href="addsubject.php">Add Subject</a>
+            <a class="nav-link ps-5" href="viewsubject.php">View Subject</a>
 
         </div>
 
