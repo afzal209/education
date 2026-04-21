@@ -1,39 +1,48 @@
-<?php 
-        include_once 'db/connect.php';
-        if(!isset($_SESSION['user']['email']))
-        {
-            header('location:login.php');
-        }
+<?php
+require_once dirname(__DIR__) .'/config.php'; 
+        include(BASE_PATH.'db/connect.php');
+       if(!isset($_SESSION['user']['email']))
+    {
+        header('location:index.php');
+    }
     
+
+    // print_r($_SESSION);
         ?>
 
 
 
         <?php
-        include_once 'includeFile/header.php'; 
-        ch_title("Add Subject");
-        include_once 'includeFile/navbar.php';
+       include_once(BASE_PATH .'/includes/header.php'); 
+	ch_title("Moalym", "Add Subject");
         ?>
-            <section class="banner-area relative" id="home">	
-                    <div class="overlay overlay-bg"></div>
-                    <div class="container">				
-                        <div class="row d-flex align-items-center justify-content-center">
-                            <div class="about-content col-lg-12">
-                                <h1 class="text-white">
-                                    Add Subject				
-                                </h1>	
-                                <!-- <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span><a href="blog-home.html">Blog </a> <span class="lnr lnr-arrow-right"></span> <a href="blog-single.html"> Blog Details Page</a></p> -->
-                            </div>	
-                        </div>
-                    </div>
-                </section>
+            <div id="wrapper">
 
-                <div class="whole-wrap">
-                    <div class="container" >
-                        <div class="section-top-border">
-                            <div class="row">
-                                <div class="col-lg-8 col-md-8">
-                                    <h3 class="mb-30 text-center">Add Subject</h3>
+    <!-- Sidebar -->
+    <?php 
+    include_once(BASE_PATH .'/includes/sidebar.php');
+    ?>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <?php 
+        include_once(BASE_PATH .'/includes/topbar.php')
+        ?>
+
+
+            <main id="main" class="main">
+                <div class="container" style="margin: auto;">
+                    <div class="row ">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2>Add Subject</h2>
+                                </div>
+                                <div class="card-body">
                                     <?php 
                                         if(@$_GET['response'] != ''){
                                             echo '  <div class="alert alert-'.@$_GET['class'].'">
@@ -41,36 +50,69 @@
                                                     </div>';
                                                 }
                                     ?>
-                                    <form  method="POST" action="phpScript/subject_script.php" enctype="multipart/form-data">
-                                        <div class="mt-10">
-                                            <input type="file" name="image" id="image"  >
+                                    <form method="POST" action="<?php echo BASE_URL; ?>admin/phpScript/subject_script.php"
+                                        enctype="multipart/form-data">
+                                        <input type="hidden" name="insert_by" value="<?php echo $_SESSION['user']['id']; ?>">
+                                        <div class="form-floating mb-3">
+                                            <input type="file" class="form-control" id="image" name="image"
+                                                 required>
+                                            <label for="image">Select Image</label>
                                         </div>
-                                        <div class="form-group mt-10">
-                                                <select class="form-control" name="academicname" id="academicname" >
-                                                    <option value="" selected>Academic Name</option>
+                                        <!-- Username -->
+                                        <div class="mb-3">
+                                            <label for="role" class="form-label">Type</label>
+                                            <select class="form-control" name="academicname" id="academicname" >
+                                                <option value="" selected>Academic Name</option>
                                                     <?php
-                                                    $query=mysqli_query($con,"select * from academic");
+                                                    $query=mysqli_query($con,"select * from academic where status_post =2 ");
                                                     while ($row=mysqli_fetch_assoc($query)) { 
                                                     ?>
                                                     <option value="<?php echo $row['id'];?>"><?php echo $row['academic_name'];?></option>
                                                     <?php 
                                                         }
                                                 ?>
-                                                </select>
+                                            </select>
                                         </div>
-                                        <div class="mt-10">
-                                            <input type="text" name="text" id="text" placeholder="Enter Subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'" required class="single-input">
+                                        <!-- Email -->
+                                        
+
+                                        <!-- Password -->
+                                       
+
+                                        <!-- Role -->
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="text" name="text"
+                                                placeholder="Enter Subject" required>
+                                            <label for="text">Enter Subject</label>
                                         </div>
-                                        <div class="button-group-area mt-40">
-                                            <input class="genric-btn success-border circle" type="submit" name="submit" value="Add">
-                                        </div>                                   
+
+                                        <!-- Assign Academic -->
+                                        
+                                        <!-- Submit -->
+                                        <div class="col-12 mb-3">
+                                            <input type="submit" class="btn btn-primary" name="submit" value="Add">
+                                        </div>
+
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>  
-            
-        <?php
-        include('includeFile/footer.php');
-        ?>
+                </div>
+
+
+            </main><!-- End #main -->
+
+            <!-- Footer -->
+            <?php 
+       include(BASE_PATH .'/includes/copy_write.php')
+       ?>
+        </div>
+    </div>
+</div>
+<?php
+    // include('includeFile/footer.php');
+
+     include_once(BASE_PATH.'/includes/footer.php'); 
+    
+    ?>

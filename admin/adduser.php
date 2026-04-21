@@ -104,7 +104,7 @@
                                             <select class="form-control" name="assignacademic" id="assignacademic">
                                                 <option value="" selected>Select Academic</option>
                                                 <?php
-                $query = mysqli_query($con,"select * from academic");
+                $query = mysqli_query($con,"select * from academic where status_post =2");
                 while ($row = mysqli_fetch_assoc($query)) {
             ?>
                                                 <option value="<?php echo $row['id']; ?>">
