@@ -90,7 +90,7 @@
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="role" class="form-label">Type</label>
+                                            <label for="role" class="form-label">Status</label>
                                             <select class="form-control" name="status_post" id="status_post" >
                                                <option value="" >Status</option>
                                 <option value="1"
