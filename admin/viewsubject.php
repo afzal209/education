@@ -66,7 +66,7 @@
 
                                 <div class="card-header">
 
-                                    <h2>View Academic</h2>
+                                    <h2>View Subject</h2>
 
                                 </div>
 
@@ -108,7 +108,7 @@
 
                                                     <?php 
 
-                                                   $query=mysqli_query($con,'select subj.*,aca.academic_name from academic aca,subject subj where aca.id = subj.academy_id and aca.status_show = 1');
+                                                   $query=mysqli_query($con,'select subj.*,aca.academic_name from academic aca,subject subj where aca.id = subj.academy_id');
                                                     if(mysqli_num_rows($query) > 0){
                                                       while($row=mysqli_fetch_assoc($query)){ 
                                                         echo '<tr>'

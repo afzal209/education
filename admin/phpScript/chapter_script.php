@@ -6,7 +6,10 @@
 
 if(isset($_POST['submit'])){
 
-    include('../db/connect.php');
+require_once dirname(dirname(__DIR__)) .'/config.php';
+ 	include(BASE_PATH.'/db/connect.php');
+
+    // include('../db/connect.php');
 
     if(empty($_POST['subject']) || empty($_POST['name']) ){
 
