@@ -160,13 +160,13 @@
         <a class="nav-link collapsed ps-3"
            data-bs-toggle="collapse"
            data-bs-target="#topicMenu">
-            Topic
+            Chapter
         </a>
 
         <div id="topicMenu" class="collapse ps-4">
 
-            <a class="nav-link ps-5" href="topic_add.php">Add</a>
-            <a class="nav-link ps-5" href="topic_view.php">View</a>
+            <a class="nav-link ps-5" href="addchapter.php">Add Chapter</a>
+            <a class="nav-link ps-5" href="viewchapter.php">View Chapter</a>
 
         </div>
 
