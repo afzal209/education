@@ -1,68 +1,191 @@
 <?php 
-    include_once 'db/connect.php';
+    require_once dirname(__DIR__) .'/config.php';
+// echo BASE_PATH;
+// exit;
+
+
+    // include(BASE_PATH.'db/connect.php');
+
+     include(BASE_PATH.'db/connect.php');
+
     if(!isset($_SESSION['user']['email']))
     {
-        header('location:login.php');
+        header('location:index.php');
     }
-
-    include_once 'includeFile/header.php'; 
-	ch_title("View Chapter");
-    include_once 'includeFile/navbar.php';
     ?>
-        <section class="banner-area relative" id="home">	
-				<div class="overlay overlay-bg"></div>
-				<div class="container">				
-					<div class="row d-flex align-items-center justify-content-center">
-						<div class="about-content col-lg-12">
-							<h1 class="text-white">
-								View Chapter Page			
-							</h1>	
-							<!-- <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span><a href="blog-home.html">Blog </a> <span class="lnr lnr-arrow-right"></span> <a href="blog-single.html"> Blog Details Page</a></p> -->
-						</div>	
-					</div>
-				</div>
-            </section>
-            
-            <div class="whole-wrap">
-                <div class="container">
-                    <div class="section-top-border">
-                            
-                            <div class="progress-table-wrap">
-                                <div class="progress-table">
-                                    <div class="table-head ">
-                                        <div class="country">Subject</div>
-                                        <div class="country">Chapter Name</div>
-                                        <div class="country">Status</div>
-                                        <div class="country">Action</div>
-                                    </div>
-                                    <?php
-                                    $query=mysqli_query($con,'select subject.subject_name,chapter.* from subject RIGHT JOIN chapter ON subject.id = chapter.subject_id where chapter.subject_id = subject.id');
-                                    while($row=mysqli_fetch_assoc($query)){ 
-                                    echo' 
-                                    <div class="table-row">
-                                        <div class="country">'.$row['subject_name'].'</div>
-                                        <div class="country">'.$row['chapter_name'].'</div>
-                                        ';
-                                        if($row['status_post'] == 1){
-                                            echo ' <div class="country">Pending</div>';
+
+    <?php
+   include_once(BASE_PATH .'/includes/header.php'); 
+	ch_title("Moalym", "View Chapter");
+    ?>
+        <div id="wrapper">
+
+
+
+    <!-- Sidebar -->
+
+    <?php 
+
+    include(BASE_PATH .'includes/sidebar.php');
+
+    ?>
+
+
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+
+
+        <!-- Main Content -->
+
+        <div id="content">
+
+
+
+            <!-- Topbar -->
+
+            <?php 
+
+        include(BASE_PATH .'includes/topbar.php')
+
+        ?>
+        <main id="main" class="main">
+
+                <div class="container" style="margin: auto;">
+
+                    <div class="row ">
+
+                        <div class="col-12">
+
+                            <div class="card">
+
+                                <div class="card-header">
+
+                                    <h2>View Chapter</h2>
+
+                                </div>
+
+                                <div class="card-body">
+<?php 
+                                        if(@$_GET['response'] != ''){
+                                            echo '  <div class="alert alert-'.@$_GET['class'].'">
+                                                        <strong>'.ucfirst(@$_GET['response']).'!</strong> '.@$_GET['message'].'
+                                                    </div>';
+                                                }
+                                    ?>
+                                    <div class="col-md-12">
+
+                                        <div class="table-wrap">
+
+                                            <table class="table table-striped-columns">
+
+                                                <thead style="background-color: green;">
+
+                                                    <tr>
+
+                                                       
+
+                                                       
+
+                                                        <th class="thed" scope="col">Subject Name</th>
+
+                                                        <th scope="col">Chapter Name</th>
+                                                        <th scope="col">Status</th>
+                                                        <th scope="col">Action</th>
+                                                       
+                                                        
+
+                                                    </tr>
+
+                                                </thead>
+
+                                                <tbody>
+
+                                                    <?php 
+
+                                                  $query=mysqli_query($con,'select subject.subject_name,chapter.* from subject RIGHT JOIN chapter ON subject.id = chapter.subject_id where chapter.subject_id = subject.id');
+                                                    if(mysqli_num_rows($query) > 0){
+                                                      while($row=mysqli_fetch_assoc($query)){ 
+                                                        echo '<tr>'
+
+                                                        .'<td>'.$row['subject_name'].'</td>'
+                                                         .'<td>'.$row['chapter_name'].'</td>';
+                                                        
+                                                       
+                                                       if($row['status_post'] == 1){
+                                            echo ' <td>Pending</td>';
                                         }
                                         elseif ($row['status_post'] == 2) {
-                                            echo '<div class="country">Approve</div>';
+                                            echo '<td>Approve</td>';
                                         }
                                         elseif ($row['status_post'] == 3) {
-                                            echo '<div class="country">Rejected</div>';
+                                            echo '<td>Rejected</td>';
                                         }
-                                        echo'
-                                        <div class="country"><a href="chapterupdate.php?id=' .$row['id'].'"><i class="fa fa-pencil" aria-hidden="true"></i></a>/<a href="phpDeleteScript/chapterdelete.php?id='.$row['id'].'"><i class="fa fa-trash" aria-hidden="true"></i></a></div>
+                                                        echo'
+                                                        <td style="text-align : center">
+                                                        <a href="chapterupdate.php?id=' .$row['id'].'" class="pay_link"><i class="fa fa-pencil" aria-hidden="true"></i></a> <a href="phpDeleteScript/chapterdelete.php?id='. $row['id'].'" class="pay_link"><i class="fa fa-trash" aria-hidden="true"></i></a> </td>';
+
+                                                       
+
+                                                       
+
+                                                        '</tr>';
+                                                      }
+                                                    }
+                                                    // print_r($view_subject);  
+
+                                                   
+
+                                                    
+
+                                                    // print_r(view_subject($con,'academic'));
+
+                                                    
+
+                                                    ?>
+
+                                                </tbody>
+
+                                            </table>
+
+                                        </div>
+
                                     </div>
-                                    ';
-                                        }
-                                    ?>
+
                                 </div>
+
                             </div>
+
+
+
                         </div>
+
                     </div>
+
                 </div>
+
+
+
+
+
+            </main><!-- End #main -->
+
+            
+
+            <!-- Footer -->
+
+            <?php 
+
+       include(BASE_PATH .'includes/copy_write.php')
+
+       ?>
+
+        </div>
+
+    </div>
+
+</div>
     <?php
-    include('includeFile/footer.php');
+         include_once(BASE_PATH.'/includes/footer.php'); 
+
     ?>
