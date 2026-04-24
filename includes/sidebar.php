@@ -159,14 +159,27 @@
         <!-- Topic -->
         <a class="nav-link collapsed ps-3"
            data-bs-toggle="collapse"
-           data-bs-target="#topicMenu">
+           data-bs-target="#chapterMenu">
             Chapter
+        </a>
+
+        <div id="chapterMenu" class="collapse ps-4">
+
+            <a class="nav-link ps-5" href="addchapter.php">Add Chapter</a>
+            <a class="nav-link ps-5" href="viewchapter.php">View Chapter</a>
+
+        </div>
+
+        <a class="nav-link collapsed ps-3"
+           data-bs-toggle="collapse"
+           data-bs-target="#topicMenu">
+            Topic
         </a>
 
         <div id="topicMenu" class="collapse ps-4">
 
-            <a class="nav-link ps-5" href="addchapter.php">Add Chapter</a>
-            <a class="nav-link ps-5" href="viewchapter.php">View Chapter</a>
+            <a class="nav-link ps-5" href="addtopic.php">Add Topic</a>
+            <a class="nav-link ps-5" href="viewtopic.php">View Topic</a>
 
         </div>
 
