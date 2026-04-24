@@ -1,115 +1,199 @@
     <?php 
-        include_once 'db/connect.php';
+        require_once dirname(__DIR__) .'/config.php';
+// echo BASE_PATH;
+// exit;
+
+
+    // include(BASE_PATH.'db/connect.php');
+
+     include(BASE_PATH.'db/connect.php');
         if(!isset($_SESSION['user']['email']))
         {
             header('location:login.php');
         }
 
-        include_once 'includeFile/header.php'; 
-        ch_title("View Topic");
-        include_once 'includeFile/navbar.php';
+      include_once(BASE_PATH .'/includes/header.php'); 
+	ch_title("Moalym", "View Topic");
         ?>
-            <section class="banner-area relative" id="home">	
-                    <div class="overlay overlay-bg"></div>
-                    <div class="container">				
-                        <div class="row d-flex align-items-center justify-content-center">
-                            <div class="about-content col-lg-12">
-                                <h1 class="text-white">
-                                    View Topic Page			
-                                </h1>	
-                                <!-- <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span><a href="blog-home.html">Blog </a> <span class="lnr lnr-arrow-right"></span> <a href="blog-single.html"> Blog Details Page</a></p> -->
-                            </div>	
-                        </div>
-                    </div>
-                </section>
-                
-                <div class="whole-wrap">
-                    <div class="container">
-                        <div class="section-top-border">
-                                
-                                <div class="progress-table-wrap">
-                                    <div class="progress-table">
-                                        <?php
-                                        if($_SESSION['user']['role'] == 'admin'){
-                                        echo'
-                                        <div class="table-head ">
-                                            <div class="country">Chapter Name</div>
-                                            <div class="country">Topic Name</div>
-                                            <div class="country">Topic Embed</div>
-                                            <div class="country">Topic Article</div>
-                                            <div class="country">Insert By</div>
-                                            <div class="country">Status</div>
-                                            <div class="country">Action</div>
-                                        </div>
-                                        ';                                    
-                                        $query=mysqli_query($con,'select chapter.chapter_name,topic.* from chapter RIGHT JOIN topic ON chapter.id = topic.chapter_id where topic.chapter_id = chapter.id');
-                                        while($row=mysqli_fetch_assoc($query)){ 
-                                        echo' 
-                                        <div class="table-row">
-                                            <div class="country">'.$row['chapter_name'].'</div>
-                                            <div class="country">'.$row['topic_name'].'</div>
-                                            <div class="country">'.$row['topic_embed'].'</div>
-                                            <div class="country">'.$row['topic_article'].'</div>
-                                            <div class="country">'.$row['insert_by'].'</div>
-                                            ';
-                                            if($row['status_post'] == 1){
-                                                echo ' <div class="country">Pending</div>';
-                                            }
-                                            elseif ($row['status_post'] == 2) {
-                                                echo '<div class="country">Approve</div>';
-                                            }
-                                            elseif ($row['status_post'] == 3) {
-                                                echo '<div class="country">Rejected</div>';
-                                            }
-                                            echo'
-                                            <div class="country"><a href="topicupdate.php?id=' .$row['id'].'"><i class="fa fa-pencil" aria-hidden="true"></i></a>/<a href="phpDeleteScript/topicdelete.php?id='.$row['id'].'"><i class="fa fa-trash" aria-hidden="true"></i></a></div>
-                                        </div>
-                                        ';
-                                            }
+            <div id="wrapper">
+
+
+
+    <!-- Sidebar -->
+
+    <?php 
+
+    include(BASE_PATH .'includes/sidebar.php');
+
+    ?>
+
+
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+
+
+        <!-- Main Content -->
+
+        <div id="content">
+
+
+
+            <!-- Topbar -->
+
+            <?php 
+
+        include(BASE_PATH .'includes/topbar.php')
+
+        ?>
+        <main id="main" class="main">
+
+                <div class="container" style="margin: auto;">
+
+                    <div class="row ">
+
+                        <div class="col-12">
+
+                            <div class="card">
+
+                                <div class="card-header">
+
+                                    <h2>View Topix</h2>
+
+                                </div>
+
+                                <div class="card-body">
+<?php 
+                                        if(@$_GET['response'] != ''){
+                                            echo '  <div class="alert alert-'.@$_GET['class'].'">
+                                                        <strong>'.ucfirst(@$_GET['response']).'!</strong> '.@$_GET['message'].'
+                                                    </div>';
+                                                }
+                                    ?>
+                                    <div class="col-md-12">
+
+                                        <div class="table-wrap">
+
+                                            <table class="table table-striped-columns">
+
+                                                <thead style="background-color: green;">
+
+                                                    <tr>
+
+                                                       
+
+                                                       
+
+                                                        <th class="thed" scope="col">Chapter Name</th>
+
+                                                        <th scope="col">Topic Name</th>
+                                                        <th scope="col">Topic Embed</th>
+                                                        <th scope="col">Topic Article</th>
+                                                        <?php if($_SESSION['user']['role'] == 'admin'){
+                                                        ?>
+                                                        <th scope="col">Insert By</th>
+                                                       <?php } ?>
+                                                        <th scope="col">Status</th>
+                                                        <th scope="col">Action</th>
+                                                        
+
+                                                    </tr>
+
+                                                </thead>
+
+                                                <tbody>
+
+                                                    <?php 
+
+                                                  $query=mysqli_query($con,'select chapter.chapter_name,topic.* from chapter RIGHT JOIN topic ON chapter.id = topic.chapter_id where topic.chapter_id = chapter.id');
+                                                    if(mysqli_num_rows($query) > 0){
+                                                      while($row=mysqli_fetch_assoc($query)){ 
+                                                        echo '<tr>'
+
+                                                        .'<td>'.$row['chapter_name'].'</td>'
+                                                         .'<td>'.$row['topic_name'].'</td>'
+                                                           .'<td>'.$row['topic_embed'].'</td>'
+                                                             .'<td>'.$row['topic_article'].'</td>';
+                                                                             if($_SESSION['user']['role'] == 'admin'){
+                                                                               echo  '<td>'.$row['insert_by'].'</td>';
+                                                                             }                   
+                                                              
+                                                        
+                                                       
+                                                       if($row['status_post'] == 1){
+                                            echo ' <td>Pending</td>';
                                         }
-                                        else{
-                                        echo'
-                                        <div class="table-head ">
-                                            <div class="country">Chapter Name</div>
-                                            <div class="country">Topic Name</div>
-                                            <div class="country">Topic Embed</div>
-                                            <div class="country">Topic Article</div>
-                                            <div class="country">Status</div>
-                                            <div class="country">Action</div>
-                                        </div>
-                                            ';                         
-                                        $user_name = @$_SESSION['user']['username'];     
-                                        $query=mysqli_query($con,"select chapter.chapter_name,topic.* from chapter RIGHT JOIN topic ON chapter.id = topic.chapter_id where topic.chapter_id = chapter.id and topic.insert_by = '$user_name'");
-                                        while($row=mysqli_fetch_assoc($query)){ 
-                                        echo' 
-                                        <div class="table-row">
-                                            <div class="country">'.$row['chapter_name'].'</div>
-                                            <div class="country">'.$row['topic_name'].'</div>
-                                            <div class="country">'.$row['topic_embed'].'</div>
-                                            <div class="country">'.$row['topic_article'].'</div>
-                                            ';
-                                            if($row['status_post'] == 1){
-                                                echo ' <div class="country">Pending</div>';
-                                            }
-                                            elseif ($row['status_post'] == 2) {
-                                                echo '<div class="country">Approve</div>';
-                                            }
-                                            elseif ($row['status_post'] == 3) {
-                                                echo '<div class="country">Rejected</div>';
-                                            }
-                                            echo'
-                                            <div class="country"><a href="topicupdate.php?id=' .$row['id'].'"><i class="fa fa-pencil" aria-hidden="true"></i></a></div>
-                                        </div>
-                                            ';
-                                            }
+                                        elseif ($row['status_post'] == 2) {
+                                            echo '<td>Approve</td>';
                                         }
-                                        ?>
+                                        elseif ($row['status_post'] == 3) {
+                                            echo '<td>Rejected</td>';
+                                        }
+                                                        echo'
+                                                        <td style="text-align : center">
+                                                        <a href="chapterupdate.php?id=' .$row['id'].'" class="pay_link"><i class="fa fa-pencil" aria-hidden="true"></i></a> <a href="phpDeleteScript/chapterdelete.php?id='. $row['id'].'" class="pay_link"><i class="fa fa-trash" aria-hidden="true"></i></a> </td>';
+
+                                                       
+
+                                                       
+
+                                                        '</tr>';
+                                                      }
+                                                    }
+                                                    // print_r($view_subject);  
+
+                                                   
+
+                                                    
+
+                                                    // print_r(view_subject($con,'academic'));
+
+                                                    
+
+                                                    ?>
+
+                                                </tbody>
+
+                                            </table>
+
+                                        </div>
 
                                     </div>
+
                                 </div>
+
                             </div>
+
+
+
                         </div>
+
                     </div>
-        <?php
-        include('includeFile/footer.php');
-        ?>
+
+                </div>
+
+
+
+
+
+            </main><!-- End #main -->
+
+            
+
+            <!-- Footer -->
+
+            <?php 
+
+       include(BASE_PATH .'includes/copy_write.php')
+
+       ?>
+
+        </div>
+
+    </div>
+
+</div>
+    <?php
+         include_once(BASE_PATH.'/includes/footer.php'); 
+
+    ?>
