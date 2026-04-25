@@ -1,127 +1,212 @@
 <?php 
-    include_once 'db/connect.php';
+ require_once dirname(__DIR__) .'/config.php';
+// echo BASE_PATH;
+// exit;
+
+
+    // include(BASE_PATH.'db/connect.php');
+
+     include(BASE_PATH.'db/connect.php');
+    // include_once 'db/connect.php';
     if(!isset($_SESSION['user']['email']))
     {
-        header('location:login.php');
+        header('location:index.php');
     }
 
-    include_once 'includeFile/header.php'; 
-	ch_title("View Question");
-    include_once 'includeFile/navbar.php';
+    include_once(BASE_PATH .'/includes/header.php'); 
+	ch_title("Moalym", "View Question");
     ?>
-        <section class="banner-area relative" id="home">	
-				<div class="overlay overlay-bg"></div>
-				<div class="container">				
-					<div class="row d-flex align-items-center justify-content-center">
-						<div class="about-content col-lg-12">
-							<h1 class="text-white">
-								View Question Page			
-							</h1>	
-							<!-- <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span><a href="blog-home.html">Blog </a> <span class="lnr lnr-arrow-right"></span> <a href="blog-single.html"> Blog Details Page</a></p> -->
-						</div>	
-					</div>
-				</div>
-            </section>
-            
-            <div class="whole-wrap">
-                <div class="container">
-                    <div class="section-top-border">
-                            
-                            <div class="progress-table-wrap">
-                                <div class="progress-table">
-                                    <?php
-                                    if($_SESSION['user']['role'] == 'admin'){
-                                    echo'
-                                    <div class="table-head ">
-                                        <div class="country">Topic Name</div>
-                                        <div class="country">Question Name</div>
-                                        <div class="country">Correct Answer</div>
-                                        <div class="country">Option 1</div>
-                                        <div class="country">Option 2</div>
-                                        <div class="country">Option 3</div>
-                                        <div class="country">Option 4</div>
-                                        <div class="country">Insert By</div>
-                                        <div class="country">Status</div>
-                                        <div class="country">Action</div>
-                                    </div>
-                                    ';                                    
-                                    $user_name = @$_SESSION['user']['username']; 
-                                    $query=mysqli_query($con,"select topic.topic_name,question.* from topic RIGHT JOIN question ON topic.id = question.topic_id where question.topic_id = topic.id  ");
-                                    while($row=mysqli_fetch_assoc($query)){ 
-                                    echo' 
-                                    <div class="table-row">
-                                        <div class="country">'.$row['topic_name'].'</div>
-                                        <div class="country">'.$row['question'].'</div>
-                                        <div class="country">'.$row['correct'].'</div>
-                                        <div class="country">'.$row['option1'].'</div>
-                                        <div class="country">'.$row['option2'].'</div>
-                                        <div class="country">'.$row['option3'].'</div>
-                                        <div class="country">'.$row['option4'].'</div>
-                                        <div class="country">'.$row['insert_by'].'</div>
-                                        ';
-                                        if($row['status_post'] == 1){
-                                            echo ' <div class="country">Pending</div>';
-                                        }
-                                        elseif ($row['status_post'] == 2) {
-                                            echo '<div class="country">Approve</div>';
-                                        }
-                                        elseif ($row['status_post'] == 3) {
-                                            echo '<div class="country">Rejected</div>';
-                                        }
-                                        echo'
-                                        <div class="country"><a href="questionupdate.php?id=' .$row['id'].'"><i class="fa fa-pencil" aria-hidden="true"></i></a>/<a href="phpDeleteScript/questiondelete.php?id='.$row['id'].'"><i class="fa fa-trash" aria-hidden="true"></i></a></div>
-                                    </div>
-                                    ';
-                                        }
-                                    }
-                                    else{
-                                    echo'
-                                    <div class="table-head ">
-                                        <div class="country">Topic Name</div>
-                                        <div class="country">Question Name</div>
-                                        <div class="country">Correct Answer</div>
-                                        <div class="country">Option 1</div>
-                                        <div class="country">Option 2</div>
-                                        <div class="country">Option 3</div>
-                                        <div class="country">Option 4</div>
-                                        <div class="country">Status</div>
-                                        <div class="country">Action</div>
-                                    </div>
-                                        ';                                    
-                                    $query=mysqli_query($con,'select chapter.chapter_name,topic.* from chapter RIGHT JOIN topic ON chapter.id = topic.chapter_id where topic.chapter_id = chapter.id');
-                                    while($row=mysqli_fetch_assoc($query)){ 
-                                    echo' 
-                                    <div class="table-row">
-                                        <div class="country">'.$row['topic_name'].'</div>
-                                        <div class="country">'.$row['question'].'</div>
-                                        <div class="country">'.$row['correct'].'</div>
-                                        <div class="country">'.$row['option1'].'</div>
-                                        <div class="country">'.$row['option2'].'</div>
-                                        <div class="country">'.$row['option3'].'</div>
-                                        <div class="country">'.$row['option4'].'</div>
-                                        ';
-                                        if($row['status_post'] == 1){
-                                            echo ' <div class="country">Pending</div>';
-                                        }
-                                        elseif ($row['status_post'] == 2) {
-                                            echo '<div class="country">Approve</div>';
-                                        }
-                                        elseif ($row['status_post'] == 3) {
-                                            echo '<div class="country">Rejected</div>';
-                                        }
-                                        echo'
-                                        <div class="country"><a href="questionupdate.php?id=' .$row['id'].'"><i class="fa fa-pencil" aria-hidden="true"></i></a></div>
-                                    </div>
-                                        ';
-                                        }
-                                    }
-                                    ?>
+         <div id="wrapper">
+
+
+
+    <!-- Sidebar -->
+
+    <?php 
+
+    include(BASE_PATH .'includes/sidebar.php');
+
+    ?>
+
+
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+
+
+        <!-- Main Content -->
+
+        <div id="content">
+
+
+
+            <!-- Topbar -->
+
+            <?php 
+
+        include(BASE_PATH .'includes/topbar.php')
+
+        ?>
+        <main id="main" class="main">
+
+                <div class="container" style="margin: auto;">
+
+                    <div class="row ">
+
+                        <div class="col-12">
+
+                            <div class="card">
+
+                                <div class="card-header">
+
+                                    <h2>View Question</h2>
 
                                 </div>
+
+                                <div class="card-body">
+<?php 
+                                        if(@$_GET['response'] != ''){
+                                            echo '  <div class="alert alert-'.@$_GET['class'].'">
+                                                        <strong>'.ucfirst(@$_GET['response']).'!</strong> '.@$_GET['message'].'
+                                                    </div>';
+                                                }
+                                    ?>
+                                    <div class="col-md-12">
+
+                                        <div class="table-wrap">
+
+                                            <table class="table table-striped-columns">
+
+                                                <thead style="background-color: green;">
+
+                                                    <tr>
+
+                                                       
+
+                                                       
+
+                                                        <th class="thed" scope="col">Topic Name</th>
+
+                                                        <th scope="col">Question Name</th>
+                                                        <th scope="col">Correct Answer</th>
+                                                        <th scope="col">Option 1</th>
+                                                        <th scope="col">Option 2</th>
+                                                        <th scope="col">Option 3</th>
+                                                        <th scope="col">Option 4</th>
+                                                        <?php if($_SESSION['user']['role'] == 'admin'){
+                                                        ?>
+                                                        <th scope="col">Insert By</th>
+                                                       <?php } ?>
+                                                        <th scope="col">Status</th>
+                                                        <th scope="col">Action</th>
+                                                        
+
+                                                    </tr>
+
+                                                </thead>
+
+                                                <tbody>
+
+                                                    <?php 
+
+                                                 $query=mysqli_query($con,"select topic.topic_name,question.* from topic RIGHT JOIN question ON topic.id = question.topic_id where question.topic_id = topic.id  ");
+                                                    if(mysqli_num_rows($query) > 0){
+                                                      while($row=mysqli_fetch_assoc($query)){ 
+                                                        echo '<tr>'
+
+                                                        .'<td>'.$row['topic_name'].'</td>'
+                                                         .'<td>'.$row['question'].'</td>'
+                                                           .'<td>'.$row['correct'].'</td>'
+                                                             .'<td>'.$row['option1'].'</td>'
+                                                             .'<td>'.$row['option2'].'</td>'
+                                                             .'<td>'.$row['option3'].'</td>'
+                                                             .'<td>'.$row['option4'].'</td>';
+
+                                                                             if($_SESSION['user']['role'] == 'admin'){
+                                                                               echo  '<td>'.$row['insert_by'].'</td>';
+                                                                             }                   
+                                                              
+                                                        
+                                                       
+                                                       if($row['status_post'] == 1){
+                                            echo ' <td>Pending</td>';
+                                        }
+                                        elseif ($row['status_post'] == 2) {
+                                            echo '<td>Approve</td>';
+                                        }
+                                        elseif ($row['status_post'] == 3) {
+                                            echo '<td>Rejected</td>';
+                                        }
+                                                        echo'
+                                                        <td style="text-align : center">
+                                                        <a href="questionupdate.php?id=' .$row['id'].'" class="pay_link"><i class="fa fa-pencil" aria-hidden="true"></i></a>';
+                                                         if($_SESSION['user']['role'] == 'admin'){
+                                                        echo' <a href="phpDeleteScript/questiondelete.php?id='. $row['id'].'" class="pay_link"><i class="fa fa-trash" aria-hidden="true"></i></a>'; 
+                                                         }
+                                                        echo '
+                                                        </td>';
+
+                                                       
+
+                                                       
+
+                                                        '</tr>';
+                                                      }
+                                                    }
+                                                    // print_r($view_subject);  
+
+                                                   
+
+                                                    
+
+                                                    // print_r(view_subject($con,'academic'));
+
+                                                    
+
+                                                    ?>
+
+                                                </tbody>
+
+                                            </table>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
                             </div>
+
+
+
                         </div>
+
                     </div>
+
                 </div>
+
+
+
+
+
+            </main><!-- End #main -->
+
+            
+
+            <!-- Footer -->
+
+            <?php 
+
+       include(BASE_PATH .'includes/copy_write.php')
+
+       ?>
+
+        </div>
+
+    </div>
+
+</div>
     <?php
-    include('includeFile/footer.php');
+         include_once(BASE_PATH.'/includes/footer.php'); 
+
     ?>

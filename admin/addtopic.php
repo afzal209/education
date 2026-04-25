@@ -26,7 +26,7 @@
         // //echo $session_permission;
         $where = "";
         if($_SESSION['user']['role'] == 'editor'){
-            $where = "where id IN ($session_permission) and status_post = 2) ";
+            $where = "where id IN ($session_permission) and status_post = 2 ";
         }
         else{
             $where = "where status_post = 2";

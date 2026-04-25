@@ -9,7 +9,7 @@
      include(BASE_PATH.'db/connect.php');
         if(!isset($_SESSION['user']['email']))
         {
-            header('location:login.php');
+            header('location:index.php');
         }
 
       include_once(BASE_PATH .'/includes/header.php'); 
@@ -58,7 +58,7 @@
 
                                 <div class="card-header">
 
-                                    <h2>View Topix</h2>
+                                    <h2>View Topic</h2>
 
                                 </div>
 
@@ -131,7 +131,12 @@
                                         }
                                                         echo'
                                                         <td style="text-align : center">
-                                                        <a href="chapterupdate.php?id=' .$row['id'].'" class="pay_link"><i class="fa fa-pencil" aria-hidden="true"></i></a> <a href="phpDeleteScript/chapterdelete.php?id='. $row['id'].'" class="pay_link"><i class="fa fa-trash" aria-hidden="true"></i></a> </td>';
+                                                        <a href="topicupdate.php?id=' .$row['id'].'" class="pay_link"><i class="fa fa-pencil" aria-hidden="true"></i></a>';
+                                                        if($_SESSION['user']['role'] == 'admin'){
+                                                        echo '<a href="phpDeleteScript/topicdelete.php?id='. $row['id'].'" class="pay_link"><i class="fa fa-trash" aria-hidden="true"></i></a>';
+                                                        }
+                                                        echo'
+                                                        </td>';
 
                                                        
 

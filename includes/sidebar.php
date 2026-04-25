@@ -183,6 +183,19 @@
 
         </div>
 
+         <a class="nav-link collapsed ps-3"
+           data-bs-toggle="collapse"
+           data-bs-target="#questionMenu">
+            Question
+        </a>
+
+        <div id="questionMenu" class="collapse ps-4">
+
+            <a class="nav-link ps-5" href="addquestion.php">Add Question</a>
+            <a class="nav-link ps-5" href="viewquestion.php">View Question</a>
+
+        </div>
+
     </div>
 
 </li>
