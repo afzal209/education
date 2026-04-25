@@ -18,7 +18,7 @@ $option3=$_POST['option3'];
 
 $option4=$_POST['option4'];
 
-$correct=$_POST['correct'];
+$correct=$_POST[$_POST['correct']];
 
 $status_post = $_POST['status_post'];
 
