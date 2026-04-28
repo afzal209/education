@@ -1,4 +1,3 @@
-
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar Brand - Admin -->
@@ -115,91 +114,111 @@
         </div>
 
     </li>
-   <li class="nav-item">
+    <li class="nav-item">
 
-    <a class="nav-link collapsed"
-       data-bs-toggle="collapse"
-       data-bs-target="#educationMenu"
-       role="button">
+        <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#educationMenu" role="button">
 
-        <i class="fas fa-graduation-cap"></i>
-        Education
-    </a>
-
-    <div id="educationMenu" class="collapse" data-bs-parent="#accordionSidebar">
-
-        <!-- Academy -->
-        <a class="nav-link collapsed ps-3"
-           data-bs-toggle="collapse"
-           data-bs-target="#academyMenu">
-            Academy
+            <i class="fas fa-graduation-cap"></i>
+            Education
         </a>
 
-        <div id="academyMenu" class="collapse ps-4">
+        <div id="educationMenu" class="collapse" data-bs-parent="#accordionSidebar">
 
-            <a class="nav-link ps-5" href="addacademic.php">Add Academy</a>
-            <a class="nav-link ps-5" href="viewacademic.php">View Academy</a>
+            <!-- Academy -->
+            <a class="nav-link collapsed ps-3" data-bs-toggle="collapse" data-bs-target="#academyMenu">
+                Academy
+            </a>
+
+            <div id="academyMenu" class="collapse ps-4">
+
+                <a class="nav-link ps-5" href="addacademic.php">Add Academy</a>
+                <a class="nav-link ps-5" href="viewacademic.php">View Academy</a>
+
+            </div>
+
+            <!-- Subject -->
+            <a class="nav-link collapsed ps-3" data-bs-toggle="collapse" data-bs-target="#subjectMenu">
+                Subject
+            </a>
+
+            <div id="subjectMenu" class="collapse ps-4">
+
+                <a class="nav-link ps-5" href="addsubject.php">Add Subject</a>
+                <a class="nav-link ps-5" href="viewsubject.php">View Subject</a>
+
+            </div>
+
+            <!-- Topic -->
+            <a class="nav-link collapsed ps-3" data-bs-toggle="collapse" data-bs-target="#chapterMenu">
+                Chapter
+            </a>
+
+            <div id="chapterMenu" class="collapse ps-4">
+
+                <a class="nav-link ps-5" href="addchapter.php">Add Chapter</a>
+                <a class="nav-link ps-5" href="viewchapter.php">View Chapter</a>
+
+            </div>
+
+            <a class="nav-link collapsed ps-3" data-bs-toggle="collapse" data-bs-target="#topicMenu">
+                Topic
+            </a>
+
+            <div id="topicMenu" class="collapse ps-4">
+
+                <a class="nav-link ps-5" href="addtopic.php">Add Topic</a>
+                <a class="nav-link ps-5" href="viewtopic.php">View Topic</a>
+
+            </div>
+
+            <a class="nav-link collapsed ps-3" data-bs-toggle="collapse" data-bs-target="#questionMenu">
+                Question
+            </a>
+
+            <div id="questionMenu" class="collapse ps-4">
+
+                <a class="nav-link ps-5" href="addquestion.php">Add Question</a>
+                <a class="nav-link ps-5" href="viewquestion.php">View Question</a>
+
+            </div>
+
+            <a class="nav-link collapsed ps-3" data-bs-toggle="collapse" data-bs-target="#mokeMenu">
+                Moke
+            </a>
+
+            <div id="mokeMenu" class="collapse ps-4">
+
+                <a class="nav-link ps-5" href="addmoke.php">Add Moke</a>
+                <a class="nav-link ps-5" href="mokeacademic.php">Moke Academic</a>
+                <a class="nav-link ps-5" href="mokelist.php">Moke List</a>
+
+
+            </div>
 
         </div>
 
-        <!-- Subject -->
-        <a class="nav-link collapsed ps-3"
-           data-bs-toggle="collapse"
-           data-bs-target="#subjectMenu">
-            Subject
+    </li>
+
+    <li class="nav-item">
+
+        <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#mokeMenu" role="button"
+            aria-expanded="false" aria-controls="mokeMenu">
+
+            <i class="fas fa-user"></i>
+            Moke
         </a>
 
-        <div id="subjectMenu" class="collapse ps-4">
+        <div id="mokeMenu" class="collapse" data-bs-parent="#accordionSidebar">
 
-            <a class="nav-link ps-5" href="addsubject.php">Add Subject</a>
-            <a class="nav-link ps-5" href="viewsubject.php">View Subject</a>
+            <a class="nav-link ps-5" href="addmoke.php">Add Moke</a>
+                <a class="nav-link ps-5" href="mokeacademic.php">Moke Academic</a>
+                <a class="nav-link ps-5" href="mokelist.php">Moke List</a>
 
         </div>
 
-        <!-- Topic -->
-        <a class="nav-link collapsed ps-3"
-           data-bs-toggle="collapse"
-           data-bs-target="#chapterMenu">
-            Chapter
-        </a>
-
-        <div id="chapterMenu" class="collapse ps-4">
-
-            <a class="nav-link ps-5" href="addchapter.php">Add Chapter</a>
-            <a class="nav-link ps-5" href="viewchapter.php">View Chapter</a>
-
-        </div>
-
-        <a class="nav-link collapsed ps-3"
-           data-bs-toggle="collapse"
-           data-bs-target="#topicMenu">
-            Topic
-        </a>
-
-        <div id="topicMenu" class="collapse ps-4">
-
-            <a class="nav-link ps-5" href="addtopic.php">Add Topic</a>
-            <a class="nav-link ps-5" href="viewtopic.php">View Topic</a>
-
-        </div>
-
-         <a class="nav-link collapsed ps-3"
-           data-bs-toggle="collapse"
-           data-bs-target="#questionMenu">
-            Question
-        </a>
-
-        <div id="questionMenu" class="collapse ps-4">
-
-            <a class="nav-link ps-5" href="addquestion.php">Add Question</a>
-            <a class="nav-link ps-5" href="viewquestion.php">View Question</a>
-
-        </div>
-
-    </div>
-
-</li>
+    </li>
     
+
     <?php
         }
      }
@@ -217,8 +236,3 @@
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
 </ul>
-
-
-
-
-
