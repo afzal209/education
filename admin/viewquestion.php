@@ -75,7 +75,7 @@
 
                                         <div class="table-wrap">
 
-                                            <table class="table table-striped-columns">
+                                            <table class="table table-responsive-lg table-striped-columns">
 
                                                 <thead style="background-color: green;">
 
