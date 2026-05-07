@@ -71,7 +71,7 @@
 
                                 <div class="card-header">
 
-                                    <h2>View Subject</h2>
+                                    <h2>View User</h2>
 
                                 </div>
 
@@ -87,7 +87,7 @@
 
                                         <div class="table-wrap">
 
-                                            <table class="table table-striped-columns">
+                                            <table class="table table-responsive-lg table-striped-columns">
 
                                                 <thead style="background-color: green;">
 
