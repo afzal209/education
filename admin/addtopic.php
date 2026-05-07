@@ -41,11 +41,11 @@
 
 
 
-        <?php
+<?php
          include_once(BASE_PATH .'/includes/header.php'); 
 	ch_title("Moalym", "Add Topic");
         ?>
-                         <div id="wrapper">
+<div id="wrapper">
 
     <!-- Sidebar -->
     <?php 
@@ -81,14 +81,15 @@
                                     ?>
                                     <form method="POST" action="<?php echo BASE_URL; ?>admin/phpScript/topic_script.php"
                                         enctype="multipart/form-data">
-                                        <input type="hidden" name="insert_by" value="<?php echo $_SESSION['user']['id']; ?>">
-                                        
+                                        <input type="hidden" name="insert_by"
+                                            value="<?php echo $_SESSION['user']['id']; ?>">
+
                                         <!-- Username -->
                                         <div class="mb-3">
                                             <label for="role" class="form-label">Academy</label>
-                                            <select class="form-control" name="academic" id="academic" >
+                                            <select class="form-control" name="academic" id="academic">
                                                 <option value="" selected>Academic Name</option>
-                                                    <?php 
+                                                <?php 
                                                         foreach($resultAcademics as $key=>$academic){
                                                             echo '<option value="'.$academic['id'].'" > '.$academic['academic_name'].' </option>';
                                                         }
@@ -96,24 +97,24 @@
                                             </select>
                                         </div>
                                         <!-- Email -->
-                                         <div class="mb-3">
+                                        <div class="mb-3">
                                             <label for="role" class="form-label">Subject</label>
-                                            <select class="form-control" name="subject" id="subject" >
+                                            <select class="form-control" name="subject" id="subject">
                                                 <option value="" selected>Subject Name</option>
-                                                    
+
                                             </select>
                                         </div>
 
 
                                         <div class="mb-3">
                                             <label for="chapter" class="form-label">Chapter</label>
-                                            <select class="form-control" name="chapter" id="chapter" >
+                                            <select class="form-control" name="chapter" id="chapter">
                                                 <option value="" selected>Chapter Name</option>
-                                                    
+
                                             </select>
                                         </div>
                                         <!-- Password -->
-                                       
+
 
                                         <!-- Role -->
                                         <div class="form-floating mb-3">
@@ -122,20 +123,20 @@
                                             <label for="name">Enter Topic</label>
                                         </div>
 
-                                          <div class="form-floating mb-3">
+                                        <div class="form-floating mb-3">
                                             <input type="text" class="form-control" id="video" name="video"
                                                 placeholder="Enter video" required>
                                             <label for="video">Enter video</label>
                                         </div>
-                                         <div class="form-floating mb-3">
-                                            <textarea    class="form-control" id="article" name="article"
+                                        <div class="form-floating mb-3">
+                                            <textarea class="form-control" id="article" name="article"
                                                 placeholder="Enter article" required></textarea>
                                             <label for="article">Enter article</label>
                                         </div>
-   
+
 
                                         <!-- Assign Academic -->
-                                        
+
                                         <!-- Submit -->
                                         <div class="col-12 mb-3">
                                             <input type="submit" class="btn btn-primary" name="submit" value="Add">
@@ -153,43 +154,47 @@
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-                <script type="text/javascript">
-                    $(document).ready(function(e){
-                        $('#academic').on('change', function(e){
-                            //console.log(e);
-                            var aca_id = e.target.value;
-                            var sub_hd = <?php echo $session_permission_im?>;
-                            var role_hd = <?php echo $session_role_im?>
-                            //console.log(aca_id);
-                            $.get('ajax/topicServer.php?id='+aca_id+'&sub_hd='+sub_hd+'&role_hd='+role_hd, function(data){
-                                //console.log(data);
-                                var result = JSON.parse(data);
-                                //console.log(result);
-                                $('#subject').empty();
-                                $('#subject').append('<option value = ""></option>');  
-                                for(var i=0 ;i<result.length ; i++ ){
-                                    //console.log(result[i].id);
-                                    $('#subject').append('<option value = "'+result[i].id+'">'+result[i].subject_name+'</option>');
-                                }
-                            });
+            <script type="text/javascript">
+            $(document).ready(function(e) {
+                $('#academic').on('change', function(e) {
+                    //console.log(e);
+                    var aca_id = e.target.value;
+                    var sub_hd = <?php echo $session_permission_im?>;
+                    var role_hd = <?php echo $session_role_im?>
+                    //console.log(aca_id);
+                    $.get('ajax/topicServer.php?id=' + aca_id + '&sub_hd=' + sub_hd + '&role_hd=' +
+                        role_hd,
+                        function(data) {
+                            //console.log(data);
+                            var result = JSON.parse(data);
+                            //console.log(result);
+                            $('#subject').empty();
+                            $('#subject').append('<option value = ""></option>');
+                            for (var i = 0; i < result.length; i++) {
+                                //console.log(result[i].id);
+                                $('#subject').append('<option value = "' + result[i].id + '">' +
+                                    result[i].subject_name + '</option>');
+                            }
                         });
-                        $('#subject').on('change', function(e){
-                            //console.log(e);
-                            var sub_id = e.target.value;
-                            //console.log(aca_id);
-                            $.get('ajax/topicServer1.php?id='+sub_id, function(data_s){
-                                //console.log(data);
-                                var result = JSON.parse(data_s);
-                                //console.log(result);
-                                $('#chapter').empty();
-                                for(var i=0 ;i<result.length ; i++ ){
-                                    //console.log(result[i].id);
-                                    $('#chapter').append('<option value = "'+result[i].id+'">'+result[i].chapter_name+'</option>');
-                                }
-                            });
-                        });
+                });
+                $('#subject').on('change', function(e) {
+                    //console.log(e);
+                    var sub_id = e.target.value;
+                    //console.log(aca_id);
+                    $.get('ajax/topicServer1.php?id=' + sub_id, function(data_s) {
+                        //console.log(data);
+                        var result = JSON.parse(data_s);
+                        //console.log(result);
+                        $('#chapter').empty();
+                        for (var i = 0; i < result.length; i++) {
+                            //console.log(result[i].id);
+                            $('#chapter').append('<option value = "' + result[i].id + '">' +
+                                result[i].chapter_name + '</option>');
+                        }
                     });
-                </script>
+                });
+            });
+            </script>
             <!-- Footer -->
             <?php 
        include(BASE_PATH .'/includes/copy_write.php')
