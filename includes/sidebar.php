@@ -1,58 +1,69 @@
+
+<style>
+/* Sidebar */
+
+
+.nav-link.active{    background: #4e73df;    color: #fff !important;    border-radius: 5px;}.nav-link.active i{    color: #fff !important;}
+</style>
+
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-    <!-- Sidebar Brand - Admin -->
+    <!-- Sidebar Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+
         <?php 
-        // print_r($_SESSION);
-        if (isset($_SESSION['data']['local']) ) {
-            ?>
-        <div class="sidebar-brand-icon ">
+        if (isset($_SESSION['data']['local'])) {
+        ?>
+
+        <div class="sidebar-brand-icon">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv7kL-nf9YogeeALYYGIWQ1eWO7CZ_qQhsng&usqp=CAU"
-                alt="" width="40px" height="40px">
+                width="40" height="40">
         </div>
-        <div class="sidebar-brand-text mx-3"> <?=$_SESSION['data']['local']['username']?> </div>
+
+        <div class="sidebar-brand-text mx-3">
+            <?= $_SESSION['data']['local']['username'] ?>
+        </div>
 
         <?php
-        }
-        elseif(isset($_SESSION['data']['social'])){
-            ?>
-        <div class="sidebar-brand-icon ">
-            <img src="<?=$_SESSION['data']['social']['picture'] ?>" alt="" width="40px" height="40px">
-        </div>
-        <div class="sidebar-brand-text mx-3"> <?=$_SESSION['data']['social']['full_name']?> </div>
-        <?php
-        }
-        else{
-            ?>
-        <div class="sidebar-brand-icon ">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv7kL-nf9YogeeALYYGIWQ1eWO7CZ_qQhsng&usqp=CAU"
-                alt="" width="40px" height="40px">
-        </div>
-        <div class="sidebar-brand-text mx-3"> Admin</div>
-        <?php
-        }
-        
+        } elseif(isset($_SESSION['data']['social'])) {
         ?>
+
+        <div class="sidebar-brand-icon">
+            <img src="<?= $_SESSION['data']['social']['picture'] ?>" width="40" height="40">
+        </div>
+
+        <div class="sidebar-brand-text mx-3">
+            <?= $_SESSION['data']['social']['full_name'] ?>
+        </div>
+
+        <?php
+        } else {
+        ?>
+
+        <div class="sidebar-brand-icon">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv7kL-nf9YogeeALYYGIWQ1eWO7CZ_qQhsng&usqp=CAU"
+                width="40" height="40">
+        </div>
+
+        <div class="sidebar-brand-text mx-3">
+            Admin
+        </div>
+
+        <?php } ?>
 
     </a>
 
-
-
-    <!-- Nav Item - Dashboard -->
     <?php 
-    //  print_r($_SESSION);
-     if(isset($_SESSION['data'])){
-        ?>
+    if(isset($_SESSION['data'])){
+    ?>
+
     <li class="nav-item active">
         <a class="nav-link" href="index.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>Dashboard</span>
+        </a>
     </li>
-
-
-
-
-    <li class="nav-item">
+<li class="nav-item">
         <a class="nav-link" href="add_test_subject.php">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Add Test Subject</span></a>
@@ -93,146 +104,139 @@
             <span>View Test Question</span></a>
     </li>
     <?php
-     }
-     else{
-        if (@$_SESSION['user']['role'] == 'admin') {
-        ?>
-    <li class="nav-item">
+    } else {
 
-        <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#userMenu" role="button"
-            aria-expanded="false" aria-controls="userMenu">
+    if (@$_SESSION['user']['role'] == 'admin') {
+    ?>
 
-            <i class="fas fa-user"></i>
-            User
-        </a>
+    <!-- USER MENU -->
+   <li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'viewuser.php' ? 'active' : ''; ?>" href="viewuser.php">
+        <i class="fas fa-user"></i>
+        <span>View User</span>
+    </a>
+</li>
 
-        <div id="userMenu" class="collapse" data-bs-parent="#accordionSidebar">
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'adduser.php' ? 'active' : ''; ?>" href="adduser.php">
+        <i class="fas fa-user-plus"></i>
+        <span>Add User</span>
+    </a>
+</li>
 
-            <a class="nav-link" href="viewuser.php">View User</a>
-            <a class="nav-link" href="adduser.php">Add User</a>
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'addacademic.php' ? 'active' : ''; ?>" href="addacademic.php">
+        <i class="fas fa-graduation-cap"></i>
+        <span>Add Academy</span>
+    </a>
+</li>
 
-        </div>
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'viewacademic.php' ? 'active' : ''; ?>" href="viewacademic.php">
+        <i class="fas fa-graduation-cap"></i>
+        <span>View Academy</span>
+    </a>
+</li>
 
-    </li>
-    <li class="nav-item">
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'addsubject.php' ? 'active' : ''; ?>" href="addsubject.php">
+        <i class="fas fa-book"></i>
+        <span>Add Subject</span>
+    </a>
+</li>
 
-        <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#educationMenu" role="button">
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'viewsubject.php' ? 'active' : ''; ?>" href="viewsubject.php">
+        <i class="fas fa-book"></i>
+        <span>View Subject</span>
+    </a>
+</li>
 
-            <i class="fas fa-graduation-cap"></i>
-            Education
-        </a>
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'addchapter.php' ? 'active' : ''; ?>" href="addchapter.php">
+        <i class="fas fa-file-alt"></i>
+        <span>Add Chapter</span>
+    </a>
+</li>
 
-        <div id="educationMenu" class="collapse" data-bs-parent="#accordionSidebar">
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'viewchapter.php' ? 'active' : ''; ?>" href="viewchapter.php">
+        <i class="fas fa-file-alt"></i>
+        <span>View Chapter</span>
+    </a>
+</li>
 
-            <!-- Academy -->
-            <a class="nav-link collapsed ps-3" data-bs-toggle="collapse" data-bs-target="#academyMenu">
-                Academy
-            </a>
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'addtopic.php' ? 'active' : ''; ?>" href="addtopic.php">
+        <i class="fas fa-list"></i>
+        <span>Add Topic</span>
+    </a>
+</li>
 
-            <div id="academyMenu" class="collapse ps-4">
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'viewtopic.php' ? 'active' : ''; ?>" href="viewtopic.php">
+        <i class="fas fa-list"></i>
+        <span>View Topic</span>
+    </a>
+</li>
 
-                <a class="nav-link ps-5" href="addacademic.php">Add Academy</a>
-                <a class="nav-link ps-5" href="viewacademic.php">View Academy</a>
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'addquestion.php' ? 'active' : ''; ?>" href="addquestion.php">
+        <i class="fas fa-question-circle"></i>
+        <span>Add Question</span>
+    </a>
+</li>
 
-            </div>
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'viewquestion.php' ? 'active' : ''; ?>" href="viewquestion.php">
+        <i class="fas fa-question-circle"></i>
+        <span>View Question</span>
+    </a>
+</li>
 
-            <!-- Subject -->
-            <a class="nav-link collapsed ps-3" data-bs-toggle="collapse" data-bs-target="#subjectMenu">
-                Subject
-            </a>
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'addmoke.php' ? 'active' : ''; ?>" href="addmoke.php">
+        <i class="fas fa-book-open"></i>
+        <span>Add Moke</span>
+    </a>
+</li>
 
-            <div id="subjectMenu" class="collapse ps-4">
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'mokeacademic.php' ? 'active' : ''; ?>" href="mokeacademic.php">
+        <i class="fas fa-school"></i>
+        <span>Moke Academic</span>
+    </a>
+</li>
 
-                <a class="nav-link ps-5" href="addsubject.php">Add Subject</a>
-                <a class="nav-link ps-5" href="viewsubject.php">View Subject</a>
-
-            </div>
-
-            <!-- Topic -->
-            <a class="nav-link collapsed ps-3" data-bs-toggle="collapse" data-bs-target="#chapterMenu">
-                Chapter
-            </a>
-
-            <div id="chapterMenu" class="collapse ps-4">
-
-                <a class="nav-link ps-5" href="addchapter.php">Add Chapter</a>
-                <a class="nav-link ps-5" href="viewchapter.php">View Chapter</a>
-
-            </div>
-
-            <a class="nav-link collapsed ps-3" data-bs-toggle="collapse" data-bs-target="#topicMenu">
-                Topic
-            </a>
-
-            <div id="topicMenu" class="collapse ps-4">
-
-                <a class="nav-link ps-5" href="addtopic.php">Add Topic</a>
-                <a class="nav-link ps-5" href="viewtopic.php">View Topic</a>
-
-            </div>
-
-            <a class="nav-link collapsed ps-3" data-bs-toggle="collapse" data-bs-target="#questionMenu">
-                Question
-            </a>
-
-            <div id="questionMenu" class="collapse ps-4">
-
-                <a class="nav-link ps-5" href="addquestion.php">Add Question</a>
-                <a class="nav-link ps-5" href="viewquestion.php">View Question</a>
-
-            </div>
-
-            <a class="nav-link collapsed ps-3" data-bs-toggle="collapse" data-bs-target="#mokeMenu">
-                Moke
-            </a>
-
-            <div id="mokeMenu" class="collapse ps-4">
-
-                <a class="nav-link ps-5" href="addmoke.php">Add Moke</a>
-                <a class="nav-link ps-5" href="mokeacademic.php">Moke Academic</a>
-                <a class="nav-link ps-5" href="mokelist.php">Moke List</a>
-
-
-            </div>
-
-        </div>
-
-    </li>
-
-    <li class="nav-item">
-
-        <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#mokeMenu" role="button"
-            aria-expanded="false" aria-controls="mokeMenu">
-
-            <i class="fas fa-user"></i>
-            Moke
-        </a>
-
-        <div id="mokeMenu" class="collapse" data-bs-parent="#accordionSidebar">
-
-            <a class="nav-link ps-5" href="addmoke.php">Add Moke</a>
-                <a class="nav-link ps-5" href="mokeacademic.php">Moke Academic</a>
-                <a class="nav-link ps-5" href="mokelist.php">Moke List</a>
-
-        </div>
-
-    </li>
-    
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'mokelist.php' ? 'active' : ''; ?>" href="mokelist.php">
+        <i class="fas fa-list-alt"></i>
+        <span>Moke List</span>
+    </a>
+</li>
 
     <?php
         }
-     }
-     ?>
+    }
+    ?>
 
-
-
+    <!-- LOGOUT -->
     <li class="nav-item">
+
         <a class="nav-link" href="logout.php">
-            <i class="fas fa-right-from-bracket" aria-hidden="true"></i>
-            <span>Logout</span></a>
+
+            <i class="fas fa-right-from-bracket"></i>
+            <span>Logout</span>
+
+        </a>
+
     </li>
 
+    <!-- Sidebar Toggle -->
     <div class="text-center d-none d-md-inline">
+
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
+
     </div>
+
 </ul>
