@@ -1,103 +1,212 @@
-<?php
-    include 'db/connect.php';
+<?php 
+    require_once dirname(__DIR__) .'/config.php';
+// echo BASE_PATH;
+// exit;
+
+
+    // include(BASE_PATH.'db/connect.php');
+
+     include(BASE_PATH.'db/connect.php');
+
     if(!isset($_SESSION['user']['email']))
     {
-        header('location:login.php');
+        header('location:index.php');
     }
-	include_once 'includeFile/header.php'; 
-	ch_title("Moke List");
-    include_once 'includeFile/navbar.php';
-?>
-<section class="banner-area relative about-banner" id="home">
-        <div class="overlay overlay-bg"></div>
-        <div class="container">
-            <div class="row d-flex align-items-center justify-content-center">
-                <div class="about-content col-lg-12">
-                    <h1 class="text-white">
-                        Moke List Page
-                    </h1>
-                    <p class="text-white link-nav"><a href="index.php">Home </a> <span class="lnr lnr-arrow-right"></span> <a href="scoreboard.php">Score Board</a></p>
-                </div>
-            </div>
-        </div>
-    </section>
+    ?>
+    <?php
+   include_once(BASE_PATH .'/includes/header.php'); 
+	ch_title("Moalym", "Make List");
+    ?>
+<div id="wrapper">
 
-<div class="whole-wrap">
-    <div class="container">
-        <div class="section-top-border">
-                
-                <div class="progress-table-wrap">
-                    <div class="progress-table">
-                    <?php
-                   if($_SESSION['user']['role'] == 'admin'){
-                    ?>    
-                        <div class="table-head">
-                            <div class="serial">#</div>
-                            <div class="country">Moke Title</div>
-                            <div class="country">Date</div>
-                            <div class="country">Timer</div>
-                            <div class="country">Start Paper</div>
-                            <div class="country">End Paper</div>
-                            <div class="country">No of Question</div>
-                            <div class="country">Insert By</div>
-                            <div class="country">Action</div>
+
+
+    <!-- Sidebar -->
+
+    <?php 
+
+    include(BASE_PATH .'includes/sidebar.php');
+
+    ?>
+
+
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+
+
+        <!-- Main Content -->
+
+        <div id="content">
+
+
+
+            <!-- Topbar -->
+
+            <?php 
+
+        include(BASE_PATH .'includes/topbar.php')
+
+        ?>
+
+
+
+
+
+            <main id="main" class="main">
+
+                <div class="container" style="margin: auto;">
+
+                    <div class="row ">
+
+                        <div class="col-12">
+
+                            <div class="card">
+
+                                <div class="card-header">
+
+                                    <h2>View Moke List</h2>
+
+                                </div>
+
+                                <div class="card-body">
+<?php 
+                                        if(@$_GET['response'] != ''){
+                                            echo '  <div class="alert alert-'.@$_GET['class'].'">
+                                                        <strong>'.ucfirst(@$_GET['response']).'!</strong> '.@$_GET['message'].'
+                                                    </div>';
+                                                }
+                                    ?>
+                                    <div class="col-md-12">
+
+                                        <div class="table-wrap">
+
+                                            <table class="table table-responsive-lg table-striped-columns">
+
+                                                <thead style="background-color: green;">
+
+                                                    <tr>
+
+                                                       
+
+                                                        <th class="thed" scope="col">#</th>
+
+                                                        <th scope="col">Moke Title</th>
+
+                                                        <th scope="col">Date</th>
+                                                        <th scope="col">Timer</th>
+                                                        <th scope="col">Start Paper</th>
+                                                        <th scope="col">End Paper</th>
+                                                        <th scope="col">No of Question</th>
+                                                        <?php
+                                                         if($_SESSION['user']['role'] == 'admin'){
+                                                         ?>
+                                                        <th scope="col">Insert By</th>
+                                                        <?php 
+                                                         }
+                                                        ?>
+                                                        <th scope="col">Action</th>
+
+                                                       
+                                                        
+
+                                                    </tr>
+
+                                                </thead>
+
+                                                <tbody>
+
+                                                    <?php 
+                                                     if($_SESSION['user']['role'] == 'admin'){
+                                                        $where  = '';
+                                                     }
+                                                     else{
+                                                         $where  = 'where insert_by = '.$_SESSION['user']['id'];
+                                                     }
+                                                   $a =1;
+                                                    $query = mysqli_query($con,"select * from moke_title " . $where);
+                                                    if(mysqli_num_rows($query) > 0){
+                                                      while($row=mysqli_fetch_assoc($query)){ 
+                                                        echo '<tr>'
+
+                                                        .'<td>'.$a++.'</td>'
+                                                        .'<td><a href="mokeselected.php?id='.$row['id'].'">'.$row['job_title'].'</a></td>'
+                                                        .'<td>'.$row['date'].'</td>'
+                                                        .'<td>'.$row['time'].'</td>'
+                                                        .'<td>'.$row['start_paper'].'</td>'
+                                                        .'<td>'.$row['end_paper'].'</td>'
+                                                        .'<td>'.$row['no_of_question'].'</td>';
+                                                        if($_SESSION['user']['role'] == 'admin'){
+                                                            echo '<td>'.$row['insert_by'].'</td>';
+                                                        }
+                                                        
+                                                        echo'
+                                                        <td style="text-align : center">
+                                                        <a href="phpDeleteScript/mokedelete.php?id=' .$row['id'].'" class="pay_link"><i class="fa fa-trash" aria-hidden="true"></i></a> </td>';
+
+                                                       
+
+                                                       
+
+                                                        '</tr>';
+                                                      }
+                                                    }
+                                                    // print_r($view_subject);  
+
+                                                   
+
+                                                    
+
+                                                    // print_r(view_subject($con,'academic'));
+
+                                                    
+
+                                                    ?>
+
+                                                </tbody>
+
+                                            </table>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+
                         </div>
-                        <?php
-                            $a =1;
-                            $query = mysqli_query($con,"select * from moke_title");
-                            while ($row=mysqli_fetch_assoc($query)) {
-                                echo'        
-                        <div class="table-row">
-                                <div class="serial">'.$a++.'</div>
-                                <div class="country"><a href="mokeselected.php?id='.$row['id'].'">'.$row['job_title'].'</a></div>
-                                <div class="country">'.$row['date'].'</div>
-                                <div class="country">'.$row['time'].'</div>
-                                <div class="country">'.$row['start_paper'].'</div>
-                                <div class="country">'.$row['end_paper'].'</div>
-                                <div class="country">'.$row['no_of_question'].'</div>
-                                <div class="country">'.$row['insert_by'].'</div>
-                                <div class="country"><a href="phpDeleteScript/mokedelete.php?id='. $row['id'].'"><i class="fa fa-trash" aria-hidden="true"></i></a></div> 
-                        </div>
-                        ';
-                            } 
-                        }
-                        else {
-                            ?>
-                            <div class="table-head">
-                            <div class="serial">#</div>
-                            <div class="country">Moke Title</div>
-                            <div class="country">Date</div>
-                            <div class="country">Timer</div>
-                            <div class="country">Start Paper</div>
-                            <div class="country">End Paper</div>
-                            <div class="country">No of Question</div>
-                        </div>
-                        <?php
-                            $user_name = @$_SESSION['user']['username'];
-                            $a =1;
-                            $query = mysqli_query($con,"select * from moke_title where insert_by ='$user_name'");
-                            while ($row=mysqli_fetch_assoc($query)) {
-                                echo'        
-                        <div class="table-row">
-                                <div class="serial">'.$a++.'</div>
-                                <div class="country"><a href="mokeselected.php?id='.$row['id'].'">'.$row['job_title'].'</a></div>
-                                <div class="country">'.$row['date'].'</div>
-                                <div class="country">'.$row['time'].'</div>
-                                <div class="country">'.$row['start_paper'].'</div>
-                                <div class="country">'.$row['end_paper'].'</div>
-                                <div class="country">'.$row['no_of_question'].'</div>
-                        </div>
-                        ';
-                            } 
-                        }
-                        ?>
+
                     </div>
+
                 </div>
-            </div>
+
+
+
+
+
+            </main><!-- End #main -->
+
+            
+
+            <!-- Footer -->
+
+            <?php 
+
+       include(BASE_PATH .'includes/copy_write.php')
+
+       ?>
+
         </div>
+
+    </div>
+
 </div>
 
 
-<?php
-    include_once 'includeFile/footer.php'; 
-?>
+ <?php
+         include_once(BASE_PATH.'/includes/footer.php'); 
+
+    ?>
