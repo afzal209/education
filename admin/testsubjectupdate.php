@@ -1,84 +1,144 @@
 <?php 
-        include_once 'db/connect.php';
-        $id=$_GET['id'];
+           // include_once 'db/connect.php';
 
+         require_once dirname(__DIR__) .'/config.php';
+// echo BASE_PATH;
+// exit;
+
+
+    // include(BASE_PATH.'db/connect.php');
+
+     include(BASE_PATH.'db/connect.php');
+
+        if(!isset($_SESSION['user']['email']))
+        {
+            header('location:index.php');
+        }
+        $id = $_GET['id'];
         $query1=mysqli_query($con,"select * from test_subject where id='$id'");
         $row1=mysqli_fetch_assoc($query1);
         $imageName = $row1["subject_image"];
         
-        if(!isset($_SESSION['user']['email']))
-        {
-            header('location:login.php');
-        }
+        // if(!isset($_SESSION['user']['email']))
+        // {
+        //     header('location:login.php');
+        // }
     
         ?>
 
 
 
 <?php
-        include_once 'includeFile/header.php'; 
-        ch_title("Test Update Subject");
-        include_once 'includeFile/navbar.php';
+         include_once(BASE_PATH .'/includes/header.php'); 
+	ch_title("Moalym", "Test Update Subject");
         ?>
-<section class="banner-area relative" id="home">
-    <div class="overlay overlay-bg"></div>
-    <div class="container">
-        <div class="row d-flex align-items-center justify-content-center">
-            <div class="about-content col-lg-12">
-                <h1 class="text-white">
-                    Update Subject
-                </h1>
-                <!-- <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span><a href="blog-home.html">Blog </a> <span class="lnr lnr-arrow-right"></span> <a href="blog-single.html"> Blog Details Page</a></p> -->
-            </div>
-        </div>
-    </div>
-</section>
+<div id="wrapper">
 
-<div class="whole-wrap">
-    <div class="container">
-        <div class="section-top-border">
-            <div class="row">
-                <div class="col-lg-8 col-md-8">
-                    <h3 class="mb-30 text-center">Update Subject</h3>
-                    <?php 
+    <!-- Sidebar -->
+    <?php 
+    include_once(BASE_PATH .'/includes/sidebar.php');
+    ?>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <?php 
+        include_once(BASE_PATH .'/includes/topbar.php')
+        ?>
+
+
+            <main id="main" class="main">
+                <div class="container" style="margin: auto;">
+                    <div class="row ">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2>Update Test Subject</h2>
+                                </div>
+                                <div class="card-body">
+                                    <?php 
                                         if(@$_GET['response'] != ''){
                                             echo '  <div class="alert alert-'.@$_GET['class'].'">
                                                         <strong>'.ucfirst(@$_GET['response']).'!</strong> '.@$_GET['message'].'
                                                     </div>';
                                                 }
                                     ?>
-                    <form method="POST" action="" enctype="multipart/form-data">
-                        <div class="mt-10">
-                            <input type="file" name="image_t" id="image_t" value="<?=$imageName?>">
-                        </div>
-                        
-                        <div class="mt-10">
-                            <input type="text" name="name" id="name" placeholder="Enter Subject"
-                                value="<?=$row1['subject_name'];?>" onfocus="this.placeholder = ''"
-                                onblur="this.placeholder = 'Enter Subject'" required class="single-input">
-                        </div>
-                        <div class="form-group mt-10">
-                            <select class="form-control" name="status_post" id="status_post">
-                                <option value="" >Status</option>
-                                <option value="1" <?php if($row1['status_post'] == 1) echo 'selected' ?>>Pending
-                                </option>
-                                <option value="2" <?php if($row1['status_post'] == 2) echo 'selected' ?>>Approve
-                                </option>
+                                    <form method="POST" action=""
+                                        enctype="multipart/form-data">
+                                          
+                                        
+                                        <!-- Username -->
+                                      
+
+                                        <!-- Email -->
+                                        
+
+                                        <!-- Password -->
+                                       <div class="mb-3">
+                                            <div class="row">
+                                                <label for="image" class="form-label">Add Image</label>
+                                                <div class="col-8">
+                                                    <input type="file" class="form-control" id="image_t"
+                                                        placeholder="Add Topic" name="image_t" value="<?=$imageName?>">
+                                                </div>
+                                            
+                                            </div>
+                                        </div>
+
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="name" name="name"
+                                                placeholder="Enter Subject Name" required value="<?=$row1['subject_name'];?>">
+                                            <label for="name">Enter Subject Name</label>
+                                        </div>
+
+
+                                        <div class="mb-3">
+                                            <label for="role" class="form-label">Status</label>
+                                            <select class="form-control" name="status_post" id="status_post" >
+                                               <option value="" >Status</option>
+                                         <option value="1"
+                                <?php if($row1['status_post'] == 1) echo 'selected' ?>>Pending</option>
+                                <option value="2" <?php if($row1['status_post'] == 2) echo 'selected' ?>>Approve</option>
                                 <option value="3" <?php if($row1['status_post'] == 3) echo 'selected' ?>>Rejected
                                 </option>
-                            </select>
+                                            </select>
+                                        </div>
+
+                                        
+                                        <!-- Assign Academic -->
+                                        
+                                        <!-- Submit -->
+                                        <div class="col-12 mb-3">
+                                            <input type="submit" class="btn btn-primary" name="submit" value="Add">
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <div class="button-group-area mt-40">
-                            <input class="genric-btn success-border circle" type="submit" name="submit" value="Add">
-                        </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+
+
+            </main><!-- End #main -->
+
+            <!-- Footer -->
+            <?php 
+       include(BASE_PATH .'/includes/copy_write.php')
+       ?>
         </div>
     </div>
 </div>
+
+
+
 <?php
-        include 'phpScript/update_test_subject_script.php';
-        include('includeFile/footer.php');
-        ?>
+    // include('includeFile/footer.php');
+     include_once(BASE_PATH.'admin/phpScript/update_test_subject_script.php'); 
+
+     include_once(BASE_PATH.'/includes/footer.php'); 
+    
+    ?>
