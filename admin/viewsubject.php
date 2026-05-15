@@ -115,7 +115,7 @@
 
                                                         .'<td>'.$row['academic_name'].'</td>'
                                                          .'<td>'.$row['subject_name'].'</td>'
-                                                        .'<td><img src="../'.$row['subject_image'].'" style="width: 127px;height: 40px;"></td>';
+                                                        .'<td><img src="'.BASE_URL.$row['subject_image'].'" style="width: 127px;height: 40px;"></td>';
                                                        
                                                        if($row['status_post'] == 1){
                                             echo ' <td>Pending</td>';

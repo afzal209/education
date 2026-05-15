@@ -215,6 +215,20 @@
     </a>
 </li>
 
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'testsubject.php' ? 'active' : ''; ?>" href="testsubject.php">
+        <i class="fas fa-book"></i>
+        <span>Add Test Subject</span>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'viewtestsubject.php' ? 'active' : ''; ?>" href="viewtestsubject.php">
+        <i class="fas fa-book"></i>
+        <span>View Test Subject</span>
+    </a>
+</li>
+
     <?php
         }
     }

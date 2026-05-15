@@ -1,5 +1,7 @@
 <?php 
-        include_once 'db/connect.php';
+           // include_once 'db/connect.php';
+        require_once dirname(__DIR__) .'/config.php'; 
+        include(BASE_PATH.'db/connect.php');
         if(!isset($_SESSION['user']['email']))
         {
             header('location:login.php');
@@ -10,51 +12,99 @@
 
 
         <?php
-        include_once 'includeFile/header.php'; 
-        ch_title("Add Test Subject");
-        include_once 'includeFile/navbar.php';
+         include_once(BASE_PATH .'/includes/header.php'); 
+	ch_title("Moalym", "Add Test Subject");
         ?>
-            <section class="banner-area relative" id="home">	
-                    <div class="overlay overlay-bg"></div>
-                    <div class="container">				
-                        <div class="row d-flex align-items-center justify-content-center">
-                            <div class="about-content col-lg-12">
-                                <h1 class="text-white">
-                                    Add Test Subject 				
-                                </h1>	
-                                <!-- <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span><a href="blog-home.html">Blog </a> <span class="lnr lnr-arrow-right"></span> <a href="blog-single.html"> Blog Details Page</a></p> -->
-                            </div>	
-                        </div>
-                    </div>
-                </section>
+           <div id="wrapper">
 
-                <div class="whole-wrap">
-                    <div class="container" >
-                        <div class="section-top-border">
-                            <div class="row">
-                                <div class="col-lg-8 col-md-8">
-                                    <h3 class="mb-30 text-center">Add Test Subject</h3>
+    <!-- Sidebar -->
+    <?php 
+    include_once(BASE_PATH .'/includes/sidebar.php');
+    ?>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <?php 
+        include_once(BASE_PATH .'/includes/topbar.php')
+        ?>
+
+
+            <main id="main" class="main">
+                <div class="container" style="margin: auto;">
+                    <div class="row ">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2>Add Test Subject</h2>
+                                </div>
+                                <div class="card-body">
                                     <?php 
                                         if(@$_GET['response'] != ''){
                                             echo '  <div class="alert alert-'.@$_GET['class'].'">
                                                         <strong>'.ucfirst(@$_GET['response']).'!</strong> '.@$_GET['message'].'
                                                     </div>';
                                                 }
+
+                                                  $timezone = "Asia/Karachi";
+                                            date_default_timezone_set($timezone);
+                                           $today = date("Y-m-d");
                                     ?>
-                                    <form  method="POST" action="phpScript/test_subject_script.php" >
-                                        <div class="mt-10">
-                                            <input type="text" name="text" id="text" placeholder="Enter Subject Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject Name'" required class="single-input">
+                                    <form method="POST" action="<?php echo BASE_URL; ?>admin/phpScript/test_subject_script.php"
+                                        enctype="multipart/form-data">
+                                        <input type="hidden" name="insert_by" value="<?php echo $_SESSION['user']['id']; ?>">
+                                        <div class="mb-3">
+                                            <div class="row">
+                                                <label for="image" class="form-label">Add Image</label>
+                                                <div class="col-8">
+                                                    <input type="file" class="form-control" id="image_t"
+                                                        placeholder="Add Topic" name="image_t">
+                                                </div>
+                                            
+                                            </div>
+                                        </div>    
+
+
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="text" name="text"
+                                                placeholder="Enter Subject Name" required>
+                                            <label for="text">Enter Subject Name</label>
                                         </div>
-                                        <input type="hidden" name="insert_by" value="<?php echo @$_SESSION['user']['username']; ?>" >         
-                                        <div class="button-group-area mt-40">
-                                            <input class="genric-btn success-border circle" type="submit" name="submit" value="Add">
-                                        </div>                                             
+                                        
+                                        
+   
+
+                                        <!-- Assign Academic -->
+                                        
+                                        <!-- Submit -->
+                                        <div class="col-12 mb-3">
+                                            <input type="submit" class="btn btn-primary" name="submit" value="Add">
+                                        </div>
+
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>   
-        <?php
-        include('includeFile/footer.php');
-        ?>
+                </div>
+
+
+            </main><!-- End #main -->
+
+        
+            <!-- Footer -->
+            <?php 
+       include(BASE_PATH .'/includes/copy_write.php')
+       ?>
+        </div>
+    </div>
+</div>  
+           <?php
+    // include('includeFile/footer.php');
+
+     include_once(BASE_PATH.'/includes/footer.php'); 
+    
+    ?>
