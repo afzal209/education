@@ -14,12 +14,13 @@ if(isset($_POST['submit'])){
      $query = mysqli_query($con,"select id,subject_image from test_subject where id='$id'");
      $row = mysqli_fetch_assoc($query);
      $image_old = $row['subject_image'];
-    $location="img/";
+    $location="../img/";
+    $db_path = "img/";
     $path =$location.$image_name;
     if($image_name != ""){
         rename($image_old,$path);
      if(move_uploaded_file($image,$path)){
-          $update=mysqli_query($con,"update test_subject set  subject_name='$name',subject_image='$path',status_post=$status_post where id='$id'");
+          $update=mysqli_query($con,"update test_subject set  subject_name='$name',subject_image='$db_path$image_name',status_post=$status_post where id='$id'");
      }
     }
     else{
