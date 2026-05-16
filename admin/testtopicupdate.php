@@ -1,8 +1,18 @@
 <?php 
-        include_once 'db/connect.php';
+          // include_once 'db/connect.php';
+
+         require_once dirname(__DIR__) .'/config.php';
+// echo BASE_PATH;
+// exit;
+
+
+    // include(BASE_PATH.'db/connect.php');
+
+     include(BASE_PATH.'db/connect.php');
+
         if(!isset($_SESSION['user']['email']))
         {
-            header('location:login.php');
+            header('location:index.php');
         }
         $id = $_GET['id'];
 
@@ -23,48 +33,70 @@
         $article = $row['topic_article'];  
         
         $lang = $row['lang'];
+
+        // print_r($row);
         ?>
 
 
 
-        <?php
-        include_once 'includeFile/header.php'; 
-        ch_title("Update Test Topic ");
-        include_once 'includeFile/navbar.php';
+<?php
+       include_once(BASE_PATH .'/includes/header.php'); 
+	ch_title("Moalym", "Test Update Topic");
         ?>
-            <section class="banner-area relative" id="home">	
-                    <div class="overlay overlay-bg"></div>
-                    <div class="container">				
-                        <div class="row d-flex align-items-center justify-content-center">
-                            <div class="about-content col-lg-12">
-                                <h1 class="text-white">
-                                    Update Test Topic 				
-                                </h1>	
-                                <!-- <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span><a href="blog-home.html">Blog </a> <span class="lnr lnr-arrow-right"></span> <a href="blog-single.html"> Blog Details Page</a></p> -->
-                            </div>	
-                        </div>
-                    </div>
-                </section>
+<div id="wrapper">
 
-                <div class="whole-wrap">
-                    <div class="container" >
-                        <div class="section-top-border">
-                            <div class="row">
-                                <div class="col-lg-8 col-md-8">
-                                    <h3 class="mb-30 text-center">Update Test Chapter</h3>
+    <!-- Sidebar -->
+    <?php 
+    include_once(BASE_PATH .'/includes/sidebar.php');
+    ?>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <?php 
+        include_once(BASE_PATH .'/includes/topbar.php')
+        ?>
+
+
+            <main id="main" class="main">
+                <div class="container" style="margin: auto;">
+                    <div class="row ">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2>Add Test Topic</h2>
+                                </div>
+                                <div class="card-body">
                                     <?php 
                                         if(@$_GET['response'] != ''){
                                             echo '  <div class="alert alert-'.@$_GET['class'].'">
                                                         <strong>'.ucfirst(@$_GET['response']).'!</strong> '.@$_GET['message'].'
                                                     </div>';
                                                 }
+
+                                                  $timezone = "Asia/Karachi";
+                                            date_default_timezone_set($timezone);
+                                           $today = date("Y-m-d");
                                     ?>
-                                    <form  method="POST" action="" enctype="multipart/form-data">
-                                        <div class="mt-10">
-                                            <input type="text" name="name" id="name" value="<?php echo $name;?>" placeholder="Enter Chapter Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Chapter Name'" required class="single-input">
+                                    <form method="POST" action="" enctype="multipart/form-data">
+                                        <input type="hidden" name="insert_by"
+                                            value="<?php echo $_SESSION['user']['id']; ?>">
+
+
+
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="name" name="name"
+                                                placeholder="Enter Topic Name" value="<?php echo $name;?>" required>
+                                            <label for="topic">Enter Topic Name</label>
                                         </div>
-                                        <div class="mt-10">
                                         <?php 
+                                        if($embed !=''){
+                                        ?>
+                                        <div class="form-floating mb-3">
+                                            <?php 
                                                     if(preg_match('/youtube/',$embed)){
                                                         $youtube_link=str_replace("https://www.youtube.com/watch?v=" , "https://www.youtube.com/embed/", $embed);
                                                         echo' <iframe class="embed-responsive-item" width="407" height="310" src="'.$youtube_link.'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
@@ -87,52 +119,104 @@
                                                         <image src="'.$embed.'" alt ="error">
                                                          ';
                                                     }
-                                            ?> 
+                                            ?>
                                         </div>
-                                        <div class="mt-10">
-                                            <input type="text" name="video" id="video"  placeholder="Enter url"  class="single-input" value="<?=$embed?>">
+                                        <?php
+                                        } 
+                                        ?>
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="video" name="video"
+                                                placeholder="Enter Video Link" required value="<?=$embed ?>">
+                                            <label for="video">Enter Video Link</label>
                                         </div>
-                                        <div class="mt-10">
-                                              <image src="../<?=$image;?>" alt ="error" width="480" height="270">
+
+                                        <div class="mb-3">
+                                            <div class="row">
+                                                <label for="image" class="form-label">Add Image</label>
+                                                <div class="col-8">
+                                                    <input type="file" class="form-control" id="image_t"
+                                                        placeholder="Add Image" name="image_t">
+                                                </div>
+
+                                            </div>
                                         </div>
-                                        <div class="mt-10">
-                                            <input type="file" name="image_t" id="image_t"  placeholder="Upload Image" class="single-input">
+                                        <?php 
+                                        if($image !=''){
+                                            ?>
+                                        <div class="mb-3">
+                                            <div class="row">
+                                                <image src="<?=BASE_URL.$image;?>" alt="error" width="480" height="270">
+                                            </div>
                                         </div>
-                                        <div class="mt-10">
-                                            <input type="text" name="description" id="description" value="<?php echo $description;?>" placeholder="Enter Description"  class="single-input">
+                                        <?php
+                                        }
+                                        ?>
+
+
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="description" name="description"
+                                                placeholder="Enter Description" value="<?php echo $description;?>"
+                                                required>
+                                            <label for="description">Enter Description</label>
                                         </div>
-                                        <div class="mt-10">
-                                            <textarea name="article" id="article" class="single-textarea" placeholder="Enter Article" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Article'" required><?php echo $article ?></textarea>
+
+                                        <div class="form-floating mb-3">
+                                            <textarea type="text" class="form-control" id="article" name="article"
+                                                placeholder="Enter Article" required><?php echo $article ?></textarea>
+                                            <label for="article">Enter Article</label>
                                         </div>
-                                        <div class="form-group mt-10">
-                                                <label>Current Language<?php echo $lang?></label>
-                                                <select class="form-control" name="lang" id="lang" >
-                                                    <option value="" selected>Choose Language</option>
-                                                    <option value="english">English</option>
-                                                    <option value="urdu">Urdu</option>
-                                                </select>
-                                        </div>
-                                        <div class="form-group mt-10">
-                                            <select class="form-control" name="status_post" id="status_post" ">
-                                                <option value="" >Status</option>
-                                                <option value="1" <?php if($row['status_post'] == 1) echo 'selected' ?>>Pending
+
+                                        <div class="mb-3">
+                                            <label for="role" class="form-label">language</label>
+                                            <select class="form-control" name="lang" id="lang">
+                                                <option value="" selected>Select Language</option>
+                                                <option value="english"
+                                                    <?php echo ($lang == 'english') ? 'selected' : '' ?>>English
                                                 </option>
-                                                <option value="2" <?php if($row['status_post'] == 2) echo 'selected' ?>>Approve
+                                                <option value="urdu" 
+                                                    <?php echo ($lang == 'urdu') ? 'selected' : '' ?>>Urdu
                                                 </option>
-                                                <option value="3" <?php if($row['status_post'] == 3) echo 'selected' ?>>Rejected
-                                                </option>
+                                                <!-- Add more language options as needed -->
                                             </select>
                                         </div>
-                                        <div class="button-group-area mt-40">
-                                            <input class="genric-btn success-border circle" type="submit" name="submit" value="Add">
-                                        </div>                                             
+
+                                        <div class="mb-3">
+                                            <label for="role" class="form-label">Status</label>
+                                            <select class="form-control" name="status_post" id="status_post" >
+                                                <option value="" >Status</option>
+                                                <option value="1" <?php if($row['status_post'] == 1) echo 'selected' ?>>Pending</option>
+                                                <option value="2" <?php if($row['status_post'] == 2) echo 'selected' ?>>Approve</option>
+                                                <option value="3" <?php if($row['status_post'] == 3) echo 'selected' ?>>Rejected</option>
+                                            </select>
+                                        </div>
+                                        <!-- Assign Academic -->
+
+                                        <!-- Submit -->
+                                        <div class="col-12 mb-3">
+                                            <input type="submit" class="btn btn-primary" name="submit" value="Add">
+                                        </div>
+
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>   
-        <?php
-        include('includeFile/footer.php');
-        include('phpScript/update_test_topic_script.php');
+                </div>
+
+
+            </main><!-- End #main -->
+
+
+            <!-- Footer -->
+            <?php 
+       include(BASE_PATH .'/includes/copy_write.php')
+       ?>
+        </div>
+    </div>
+</div>
+<?php
+
+         include_once(BASE_PATH.'admin/phpScript/update_test_topic_script.php'); 
+
+     include_once(BASE_PATH.'/includes/footer.php'); 
         ?>
