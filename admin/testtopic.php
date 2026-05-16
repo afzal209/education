@@ -1,5 +1,7 @@
 <?php 
-        include_once 'db/connect.php';
+           // include_once 'db/connect.php';
+        require_once dirname(__DIR__) .'/config.php'; 
+        include(BASE_PATH.'db/connect.php');
         if(!isset($_SESSION['user']['email']))
         {
             header('location:login.php');
@@ -10,91 +12,143 @@
 
 
         <?php
-        include_once 'includeFile/header.php'; 
-        ch_title("Add Test Topic");
-        include_once 'includeFile/navbar.php';
+         include_once(BASE_PATH .'/includes/header.php'); 
+	ch_title("Moalym", "Add Test Topic");
         ?>
-            <section class="banner-area relative" id="home">	
-                    <div class="overlay overlay-bg"></div>
-                    <div class="container">				
-                        <div class="row d-flex align-items-center justify-content-center">
-                            <div class="about-content col-lg-12">
-                                <h1 class="text-white">
-                                    Add Test Topic 				
-                                </h1>	
-                                <!-- <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span><a href="blog-home.html">Blog </a> <span class="lnr lnr-arrow-right"></span> <a href="blog-single.html"> Blog Details Page</a></p> -->
-                            </div>	
-                        </div>
-                    </div>
-                </section>
+           <div id="wrapper">
 
-                <div class="whole-wrap">
-                    <div class="container" >
-                        <div class="section-top-border">
-                            <div class="row">
-                                <div class="col-lg-8 col-md-8">
-                                    <h3 class="mb-30 text-center">Add Test Topic</h3>
+    <!-- Sidebar -->
+    <?php 
+    include_once(BASE_PATH .'/includes/sidebar.php');
+    ?>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <?php 
+        include_once(BASE_PATH .'/includes/topbar.php')
+        ?>
+
+
+            <main id="main" class="main">
+                <div class="container" style="margin: auto;">
+                    <div class="row ">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2>Add Test Topic</h2>
+                                </div>
+                                <div class="card-body">
                                     <?php 
                                         if(@$_GET['response'] != ''){
                                             echo '  <div class="alert alert-'.@$_GET['class'].'">
                                                         <strong>'.ucfirst(@$_GET['response']).'!</strong> '.@$_GET['message'].'
                                                     </div>';
                                                 }
+
+                                                  $timezone = "Asia/Karachi";
+                                            date_default_timezone_set($timezone);
+                                           $today = date("Y-m-d");
                                     ?>
-                                    <form  method="POST" action="phpScript/test_topic_script.php"  enctype="multipart/form-data">
-                                        <div class="form-group mt-10">
-                                                <select class="form-control" name="subject" id="subject" >
-                                                    <option value="" selected>Subject</option>
-                                                <?php
-                                                     $query = mysqli_query($con,"select * from test_subject");
-                                                     if(mysqli_num_rows($query) > 0){
-                                                         while($row=mysqli_fetch_assoc($query)){
-                                                             echo '<option value="'.$row['id'].'">'.$row['subject_name'].'</option>';
-                                                         }
-                                                     }
-                                                     else{
-                                                         echo '<option value="">No Subject Added</option>';
-                                                     } 
+                                    <form method="POST" action="<?php echo BASE_URL; ?>admin/phpScript/test_topic_script.php"
+                                        enctype="multipart/form-data">
+                                        <input type="hidden" name="insert_by" value="<?php echo $_SESSION['user']['id']; ?>">
+                                        <div class="mb-3">
+                                            <label for="role" class="form-label">Subject</label>
+                                            <select class="form-control" name="subject" id="subject" >
+                                                <option value="" selected>subject Name</option>
+                                                    <?php
+                                                    $query=mysqli_query($con,"select * from test_subject where status_post =2 ");
+                                                    while ($row=mysqli_fetch_assoc($query)) { 
+                                                    ?>
+                                                    <option value="<?php echo $row['id'];?>"><?php echo $row['subject_name'];?></option>
+                                                    <?php 
+                                                        }
                                                 ?>
-                                                </select>
+                                            </select>
+                                        </div> 
+                                        <div class="mb-3">
+                                            <label for="role" class="form-label">Chapter</label>
+                                            <select class="form-control" name="chapter" id="chapter" >
+                                                <option value="" selected>Chapter Name</option>
+                                                   
+                                            </select>
+                                        </div>   
+
+
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="topic" name="topic"
+                                                placeholder="Enter Topic Name" required>
+                                            <label for="topic">Enter Topic Name</label>
                                         </div>
-                                        <div class="form-group mt-10">
-                                                <select class="form-control" name="chapter" id="chapter" >
-                                                    <option value="" selected>Chapter</option>
-                                                </select>
+
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="video" name="video"
+                                                placeholder="Enter Video Link" required>
+                                            <label for="video">Enter Video Link</label>
                                         </div>
-                                        <div class="mt-10">
-                                            <input type="text" name="topic" id="topic" placeholder="Enter Chapter Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Chapter Name'" required class="single-input">
+
+                                        <div class="mb-3">
+                                            <div class="row">
+                                                <label for="image" class="form-label">Add Image</label>
+                                                <div class="col-8">
+                                                    <input type="file" class="form-control" id="image"
+                                                        placeholder="Add Image" name="image">
+                                                </div>
+                                            
+                                            </div>
                                         </div>
-                                        <div class="mt-10">
-                                            <input type="text" name="video" id="video" placeholder="Enter Video  Link" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Video  Link'" required class="single-input">
+                                        
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="description" name="description"
+                                                placeholder="Enter Description" required>
+                                            <label for="description">Enter Description</label>
                                         </div>
-                                        <div class="mt-10">
-                                            <input type="file" name="image" id="image" placeholder="Choose Image" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Choose Image'" required >
+
+                                        <div class="form-floating mb-3">
+                                            <textarea type="text" class="form-control" id="article" name="article"
+                                                placeholder="Enter Article" required></textarea>
+                                            <label for="article">Enter Article</label>
                                         </div>
-                                        <div class="mt-10">
-                                            <input type="text" name="description" id="description" placeholder="Enter Description" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Description'" required class="single-input">
+                                        
+                                        <div class="mb-3">
+                                            <label for="role" class="form-label">language</label>
+                                            <select class="form-control" name="lang" id="lang" >
+                                                <option value="" selected>Select Language</option>
+                                                <option value="english">English</option>
+                                                <option value="urdu">Urdu</option>
+                                                <!-- Add more language options as needed -->
+                                            </select>
                                         </div>
-                                        <div class="mt-10">
-                                            <textarea name="article" id="article" class="single-textarea" placeholder="Enter Article" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Article'" required></textarea>
+
+                                        <!-- Assign Academic -->
+                                        
+                                        <!-- Submit -->
+                                        <div class="col-12 mb-3">
+                                            <input type="submit" class="btn btn-primary" name="submit" value="Add">
                                         </div>
-                                        <div class="form-group mt-10">
-                                                <select class="form-control" name="lang" id="lang" >
-                                                    <option value="" selected>Choose Language</option>
-                                                    <option value="english">English</option>
-                                                    <option value="urdu">Urdu</option>
-                                                </select>
-                                        </div>
-                                        <input type="hidden" name="insert_by" value="<?php echo @$_SESSION['user']['username']; ?>" >         
-                                        <div class="button-group-area mt-40">
-                                            <input class="genric-btn success-border circle" type="submit" name="submit" value="Add">
-                                        </div>                                             
+
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>   
+                </div>
+
+
+            </main><!-- End #main -->
+
+        
+            <!-- Footer -->
+            <?php 
+       include(BASE_PATH .'/includes/copy_write.php')
+       ?>
+        </div>
+    </div>
+</div>   
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
@@ -171,6 +225,9 @@
 
                 </script>
 
-        <?php
-        include('includeFile/footer.php');
-        ?>
+       <?php
+    // include('includeFile/footer.php');
+
+     include_once(BASE_PATH.'/includes/footer.php'); 
+    
+    ?>
