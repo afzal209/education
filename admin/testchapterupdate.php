@@ -1,8 +1,18 @@
 <?php 
-        include_once 'db/connect.php';
+           // include_once 'db/connect.php';
+
+         require_once dirname(__DIR__) .'/config.php';
+// echo BASE_PATH;
+// exit;
+
+
+    // include(BASE_PATH.'db/connect.php');
+
+     include(BASE_PATH.'db/connect.php');
+
         if(!isset($_SESSION['user']['email']))
         {
-            header('location:login.php');
+            header('location:index.php');
         }
         $id=$_GET['id'];
 
@@ -14,30 +24,36 @@
 
 
         <?php
-        include_once 'includeFile/header.php'; 
-        ch_title("Add Test Subject");
-        include_once 'includeFile/navbar.php';
+        include_once(BASE_PATH .'/includes/header.php'); 
+	ch_title("Moalym", "Test Update Chapter");
         ?>
-            <section class="banner-area relative" id="home">	
-                    <div class="overlay overlay-bg"></div>
-                    <div class="container">				
-                        <div class="row d-flex align-items-center justify-content-center">
-                            <div class="about-content col-lg-12">
-                                <h1 class="text-white">
-                                    Update Test Chapter 				
-                                </h1>	
-                                <!-- <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span><a href="blog-home.html">Blog </a> <span class="lnr lnr-arrow-right"></span> <a href="blog-single.html"> Blog Details Page</a></p> -->
-                            </div>	
-                        </div>
-                    </div>
-                </section>
+            <div id="wrapper">
 
-                <div class="whole-wrap">
-                    <div class="container" >
-                        <div class="section-top-border">
-                            <div class="row">
-                                <div class="col-lg-8 col-md-8">
-                                    <h3 class="mb-30 text-center">Update Test Chapter</h3>
+    <!-- Sidebar -->
+    <?php 
+    include_once(BASE_PATH .'/includes/sidebar.php');
+    ?>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <?php 
+        include_once(BASE_PATH .'/includes/topbar.php')
+        ?>
+
+
+            <main id="main" class="main">
+                <div class="container" style="margin: auto;">
+                    <div class="row ">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2>Update Test Chapter</h2>
+                                </div>
+                                <div class="card-body">
                                     <?php 
                                         if(@$_GET['response'] != ''){
                                             echo '  <div class="alert alert-'.@$_GET['class'].'">
@@ -45,31 +61,67 @@
                                                     </div>';
                                                 }
                                     ?>
-                                    <form  method="POST" action="" >
-                                        <div class="mt-10">
-                                            <input type="text" name="name" id="name" value="<?php echo $name;?>" placeholder="Enter Chapter Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Chapter Name'" required class="single-input">
+                                    <form method="POST" action=""
+                                        enctype="multipart/form-data">
+                                          
+                                        
+                                        <!-- Username -->
+                                      
+
+                                        <!-- Email -->
+                                        
+
+                                        <!-- Password -->
+                                       
+
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="name" name="name"
+                                                placeholder="Enter Chapter Name" required value="<?php echo $name;?>">
+                                            <label for="name">Enter Chapter Name</label>
                                         </div>
-                                        <div class="form-group mt-10">
-                                            <select class="form-control" name="status_post" id="status_post" ">
-                                                <option value="" >Status</option>
-                                                <option value=" 1" <?php if($row['status_post'] == 1) echo 'selected' ?>>Pending
-                                                </option>
-                                                <option value="2" <?php if($row['status_post'] == 2) echo 'selected' ?>>Approve
-                                                </option>
-                                                <option value="3" <?php if($row['status_post'] == 3) echo 'selected' ?>>Rejected
-                                                </option>
+
+
+                                        <div class="mb-3">
+                                            <label for="role" class="form-label">Status</label>
+                                            <select class="form-control" name="status_post" id="status_post" >
+                                               <option value="" >Status</option>
+                                         <option value="1"
+                                <?php if($row['status_post'] == 1) echo 'selected' ?>>Pending</option>
+                                <option value="2" <?php if($row['status_post'] == 2) echo 'selected' ?>>Approve</option>
+                                <option value="3" <?php if($row['status_post'] == 3) echo 'selected' ?>>Rejected
+                                </option>
                                             </select>
                                         </div>
-                                        <div class="button-group-area mt-40">
-                                            <input class="genric-btn success-border circle" type="submit" name="submit" value="Add">
-                                        </div>                                             
+
+                                        
+                                        <!-- Assign Academic -->
+                                        
+                                        <!-- Submit -->
+                                        <div class="col-12 mb-3">
+                                            <input type="submit" class="btn btn-primary" name="submit" value="Add">
+                                        </div>
+
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>   
-        <?php
-        include('includeFile/footer.php');
-        include('phpScript/update_test_chapter_script.php');
-        ?>
+                </div>
+
+
+            </main><!-- End #main -->
+
+            <!-- Footer -->
+            <?php 
+       include(BASE_PATH .'/includes/copy_write.php')
+       ?>
+        </div>
+    </div>
+</div> 
+       <?php
+    // include('includeFile/footer.php');
+     include_once(BASE_PATH.'admin/phpScript/update_test_chapter_script.php'); 
+
+     include_once(BASE_PATH.'/includes/footer.php'); 
+    
+    ?>
