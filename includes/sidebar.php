@@ -229,6 +229,36 @@
     </a>
 </li>
 
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'testchapter.php' ? 'active' : ''; ?>" href="testchapter.php">
+        <i class="fas fa-file-alt"></i>
+        <span>Add Test Chapter</span>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'viewtestchapter.php' ? 'active' : ''; ?>" href="viewtestchapter.php">
+        <i class="fas fa-file-alt"></i>
+        <span>View Test Chapter</span>
+    </a>
+</li>
+
+
+
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'testtopic.php' ? 'active' : ''; ?>" href="testtopic.php">
+        <i class="fas fa-file-alt"></i>
+        <span>Add Test Topic</span>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'viewtesttopic.php' ? 'active' : ''; ?>" href="viewtesttopic.php">
+        <i class="fas fa-file-alt"></i>
+        <span>View Test Topic</span>
+    </a>
+</li>
+
     <?php
         }
     }

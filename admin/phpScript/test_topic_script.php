@@ -1,20 +1,10 @@
 <?php
-
-
-
-
-
-
-
-
-
-
-
 if(isset($_POST['submit'])){
 
 
 
-    include('../db/connect.php');
+    require_once dirname(dirname(__DIR__)) .'/config.php';
+ 	include(BASE_PATH.'/db/connect.php');
 
 
 
@@ -52,7 +42,8 @@ if(isset($_POST['submit'])){
 
         $image=$_FILES['image']['tmp_name'];
         $image_name=$_FILES['image']['name'];
-        $location="assets/test_pic/";
+        $location=BASE_PATH.'img/';
+        $db_path = 'img/';
 
         $description = $_POST['description'];
         $lang = $_POST['lang'];
@@ -264,7 +255,7 @@ if(isset($_POST['submit'])){
         }
         else {
             if(move_uploaded_file($image, $location.$image_name)){
-                $query=mysqli_query($con,"insert into test_topic(test_subject_id,test_chapter_id,topic_name,topic_pic_description,topic_embed,topic_article,lang,insert_by) values('$subject','$chapter','$topic','$description','$location$image_name','$article','$lang','$insert_by')");
+                $query=mysqli_query($con,"insert into test_topic(test_subject_id,test_chapter_id,topic_name,topic_pic_description,topic_image,topic_article,lang,insert_by) values('$subject','$chapter','$topic','$description','$db_path$image_name','$article','$lang','$insert_by')");
                 if($query){
                     header('location:../testtopic.php?response=success&class=success&message=Record Has Been inserted');
                 }
