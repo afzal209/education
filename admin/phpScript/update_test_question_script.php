@@ -1,4 +1,4 @@
- $status_post = $_POST['status_post'];<?php
+<?php
 
 
 
@@ -22,6 +22,8 @@ $correct=$_POST['correct'];
 
  $status_post = $_POST['status_post'];
 
+
+ 
     $update=mysqli_query($con,"update test_question set question='$question', option1='$option1',option2='$option2' ,option3 = '$option3',option4='$option4' , correct = '$correct',status_post ='$status_post' where id='$id'");
 
     if($update){

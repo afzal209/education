@@ -59,7 +59,7 @@ require_once dirname(__DIR__) .'/config.php';
 
                                 <div class="card-header">
 
-                                    <h2>View Test Subject</h2>
+                                    <h2>View Test Topic</h2>
 
                                 </div>
 
@@ -171,9 +171,11 @@ require_once dirname(__DIR__) .'/config.php';
                                         
                                                         echo'
                                                         <td style="text-align : center">
-                                                        <a href="testtopicupdate.php?id=' .$row['id'].'" class="pay_link"><i class="fa fa-pencil" aria-hidden="true"></i></a>/<a href="phpDeleteScript/testtopicdelete.php?id='.$row['id'].'"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                     
-                                                        </td>';
+                                                        <a href="testtopicupdate.php?id=' .$row['id'].'" class="pay_link"><i class="fa fa-pencil" aria-hidden="true"></i></a>';
+                                                        if($_SESSION['user']['role'] == 'admin'){
+                                                        echo'/<a href="phpDeleteScript/testtopicdelete.php?id='.$row['id'].'"><i class="fa fa-trash" aria-hidden="true"></i></a>';
+                                                        }
+                                                        echo'</td>';
 
                                                        
 

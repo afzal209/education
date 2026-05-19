@@ -259,6 +259,21 @@
     </a>
 </li>
 
+
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'testquestion.php' ? 'active' : ''; ?>" href="testquestion.php">
+        <i class="fas fa-file-alt"></i>
+        <span>Add Test Question</span>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'viewtestquestion.php' ? 'active' : ''; ?>" href="viewtestquestion.php">
+        <i class="fas fa-file-alt"></i>
+        <span>View Test Question</span>
+    </a>
+</li>
+
     <?php
         }
     }
