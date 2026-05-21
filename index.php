@@ -1,4 +1,9 @@
 <?php
+
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
+
 include 'web_include/header.php';
 include_once 'db/connect.php';
 include_once 'function/query.php';
