@@ -274,6 +274,21 @@
     </a>
 </li>
 
+
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'addjob.php' ? 'active' : ''; ?>" href="addjob.php">
+        <i class="fas fa-file-alt"></i>
+        <span>Add Job</span>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'addjobinfo.php' ? 'active' : ''; ?>" href="addjobinfo.php">
+        <i class="fas fa-file-alt"></i>
+        <span>Add Job Info</span>
+    </a>
+</li>
+
     <?php
         }
     }
