@@ -79,25 +79,63 @@
                                     ?>
                                     <div class="col-md-12">
 
-                                        <ol>
-        <?php
-            $a = 1;
-            $query = mysqli_query($con, "SELECT * FROM test_subject");
+                                       <div class="table-wrap">
 
-            if(mysqli_num_rows($query) > 0){
-                while($row = mysqli_fetch_assoc($query)){
-                    echo '<li class="cs-a">'.$a++.'. 
-                            <a href="mokesubject.php?id='.$row['id'].'">
-                                '.$row['subject_name'].'
-                            </a>
-                          </li>';
-                }
-            }
-            else{
-                echo '<li>No Chapter Found</li>';
-            }
-        ?>
-    </ol>
+                                            <table class="table table-responsive-lg table-striped-columns">
+
+                                                <thead style="background-color: green;">
+
+                                                    <tr>
+
+                                                       
+
+                                                       
+
+                                                        <th class="thed" scope="col">#</th>
+
+                                                        <th scope="col">Test Name</th>
+                                                        
+                                                        
+                                                        
+                                                        
+
+                                                    </tr>
+
+                                                </thead>
+
+                                                <tbody>
+
+                                                    <?php 
+                                                $a = 1;
+                                                $query=mysqli_query($con,'SELECT * FROM test_subject where status_post = 2');
+                                                    if(mysqli_num_rows($query) > 0){
+                                                      while($row=mysqli_fetch_assoc($query)){ 
+                                                       
+                                                        echo '<tr>'
+
+                                                        .'<td>'.$a++.'</td>'
+                                                         .'<td><a href="mokesubject.php?id='.$row['id'].'">'.$row['subject_name'].'</a></td>'.
+                                                        
+                                                        '</tr>';
+                                                      }
+                                                    }
+                                                    // print_r($view_subject);  
+
+                                                   
+
+                                                    
+
+                                                    // print_r(view_subject($con,'academic'));
+
+                                                    
+
+                                                    ?>
+
+                                                </tbody>
+
+                                            </table>
+
+                                        </div>
 
 
 
