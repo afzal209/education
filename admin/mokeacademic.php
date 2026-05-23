@@ -49,7 +49,27 @@
 
         ?>
 
+<div class="container-fluid mt-3">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-light p-2 rounded">
 
+            <!-- <li class="breadcrumb-item">
+                <a href="dashboard.php">Dashboard</a>
+            </li> -->
+
+            <li class="breadcrumb-item">
+                Moke Test
+            </li>
+
+            <li class="breadcrumb-item active" aria-current="page" >
+                <a href="mokeacademic.php">Test Academic</a>
+            </li>
+
+                 
+
+        </ol>
+    </nav>
+</div>
 
 
 
@@ -65,7 +85,7 @@
 
                                 <div class="card-header">
 
-                                    <h2>View Academic Lists</h2>
+                                    <h2>Moke Academic</h2>
 
                                 </div>
 
@@ -93,7 +113,7 @@
 
                                                         <th class="thed" scope="col">#</th>
 
-                                                        <th scope="col">Test Name</th>
+                                                        <th scope="col">Academic Name</th>
                                                         
                                                         
                                                         
