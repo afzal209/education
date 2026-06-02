@@ -51,7 +51,8 @@ require_once dirname(dirname(__DIR__)) .'/config.php';
 							if ($user_permission) {
 									$to = $email;
 									$subject = "Email Verification";
-									$message = "<a href=BASE_URL.'verifyEmail.php?activation_code=$activation_code'>Register Account</a>";
+									// $message = "<a href=BASE_URL.'verifyEmail.php?activation_code=$activation_code'>Register Account</a>";
+									$message = "<a href='" . BASE_URL . "verifyEmail.php?activation_code=$activation_code'>Register Account</a>";
 									$headers = "From: danialjafri88@gmail.com";
 									$headers .= "MIME-Version: 1.0" . "\r\n";
 									$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
@@ -70,7 +71,9 @@ require_once dirname(dirname(__DIR__)) .'/config.php';
 								if ($user_permission) {
 										$to = $email;
 										$subject = "Email Verification";
-										$message = "<a href=BASE_URL.'verifyEmail.php?activation_code=$activation_code'>Register Account</a>";
+										// $message = "<a href=BASE_URL.'verifyEmail.php?activation_code=$activation_code'>Register Account</a>";
+									$message = "<a href='" . BASE_URL . "admin/verifyEmail.php?activation_code=$activation_code'>Register Account</a>";
+										
 										$headers = "From: danialjafri88@gmail.com";
 										$headers .= "MIME-Version: 1.0" . "\r\n";
 										$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
