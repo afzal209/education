@@ -291,6 +291,119 @@
 
     <?php
         }
+        elseif (@$_SESSION['user']['role'] == 'subadmin') {
+    ?>
+    <li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'addmoke.php' ? 'active' : ''; ?>" href="addmoke.php">
+        <i class="fas fa-book-open"></i>
+        <span>Add Moke</span>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'mokeacademic.php' ? 'active' : ''; ?>" href="mokeacademic.php">
+        <i class="fas fa-school"></i>
+        <span>Moke Academic</span>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'mokelist.php' ? 'active' : ''; ?>" href="mokelist.php">
+        <i class="fas fa-list-alt"></i>
+        <span>Moke List</span>
+    </a>
+</li>
+    <?php
+        }
+        elseif (@$_SESSION['user']['role'] == 'editor') {
+        ?>
+        <li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'addtopic.php' ? 'active' : ''; ?>" href="addtopic.php">
+        <i class="fas fa-list"></i>
+        <span>Add Topic</span>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'viewtopic.php' ? 'active' : ''; ?>" href="viewtopic.php">
+        <i class="fas fa-list"></i>
+        <span>View Topic</span>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'addquestion.php' ? 'active' : ''; ?>" href="addquestion.php">
+        <i class="fas fa-question-circle"></i>
+        <span>Add Question</span>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'viewquestion.php' ? 'active' : ''; ?>" href="viewquestion.php">
+        <i class="fas fa-question-circle"></i>
+        <span>View Question</span>
+    </a>
+</li>
+        <?php
+        }
+        elseif (@$_SESSION['user']['role'] == 'jobeditor') {
+        ?>
+        <li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'addjob.php' ? 'active' : ''; ?>" href="addjob.php">
+        <i class="fas fa-file-alt"></i>
+        <span>Add Job</span>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'addjobinfo.php' ? 'active' : ''; ?>" href="addjobinfo.php">
+        <i class="fas fa-file-alt"></i>
+        <span>Add Job Info</span>
+    </a>
+</li>
+        <?php
+        }
+        elseif (@$_SESSION['user']['role'] == 'testeditor') {
+        ?>
+        <li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'viewtestchapter.php' ? 'active' : ''; ?>" href="viewtestchapter.php">
+        <i class="fas fa-file-alt"></i>
+        <span>View Test Chapter</span>
+    </a>
+</li>
+
+
+
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'testtopic.php' ? 'active' : ''; ?>" href="testtopic.php">
+        <i class="fas fa-file-alt"></i>
+        <span>Add Test Topic</span>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'viewtesttopic.php' ? 'active' : ''; ?>" href="viewtesttopic.php">
+        <i class="fas fa-file-alt"></i>
+        <span>View Test Topic</span>
+    </a>
+</li>
+
+
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'testquestion.php' ? 'active' : ''; ?>" href="testquestion.php">
+        <i class="fas fa-file-alt"></i>
+        <span>Add Test Question</span>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'viewtestquestion.php' ? 'active' : ''; ?>" href="viewtestquestion.php">
+        <i class="fas fa-file-alt"></i>
+        <span>View Test Question</span>
+    </a>
+</li>
+        <?php
+        }
     }
     ?>
 
