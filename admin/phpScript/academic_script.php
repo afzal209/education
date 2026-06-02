@@ -16,8 +16,16 @@ if(isset($_POST['submit'])){
             $db_path = 'img/'; 
             $name= $_POST['name'];
             $insert_type = $_POST['insert_type'];
+            $insert_by = $_POST['insert_by'];
+            if($_POST['role'] == 'admin'){
+                $query = "insert into academic(academic_name,academic_image,insert_type,insert_by,status_post) values('$name','$db_path$image_name','$insert_type','$insert_by','2')";
+            }
+            else{
+                $query = "insert into academic(academic_name,academic_image,insert_type,insert_by) values('$name','$db_path$image_name','$insert_type','$insert_by')";
+            }
+
             if (move_uploaded_file($image, $location.$image_name)) {
-                $query=mysqli_query($con,"insert into academic(academic_name,academic_image,insert_type) values('$name','$db_path$image_name','$insert_type')");
+                $query=mysqli_query($con,$query);
                 if($query){
                     //echo "<p class='alert alert-success'>inserted success</p>";
                     header('location: ../addacademic.php?response=success&class=success&message=Record inserted Successfully');

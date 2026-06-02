@@ -53,6 +53,7 @@ require_once dirname(__DIR__) .'/config.php';
                                     <form method="POST" action="<?php echo BASE_URL; ?>admin/phpScript/subject_script.php"
                                         enctype="multipart/form-data">
                                         <input type="hidden" name="insert_by" value="<?php echo $_SESSION['user']['id']; ?>">
+                                         <input type="hidden" name="role" value="<?=$_SESSION['user']['role']?>">
                                         <div class="form-floating mb-3">
                                             <input type="file" class="form-control" id="image" name="image"
                                                  required>

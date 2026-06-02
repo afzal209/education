@@ -18,10 +18,17 @@ if (isset($_POST['submit'])) {
         $insert_by = $_POST['insert_by'];
         $academic_name = $_POST['academicname'];
 
+        if($_POST['role'] == 'admin'){
+            $query = "insert into subject(academy_id,subject_image,subject_name,insert_by,status_post) values('$academic_name','$db_path$image_name','$name','$insert_by','2')";
+        }
+        else{
+            $query = "insert into subject(academy_id,subject_image,subject_name,insert_by) values('$academic_name','$db_path$image_name','$name','$insert_by')";
+        }
+
         // print_r($location.$image_name);
         if (move_uploaded_file($image, $location.$image_name)) {
             // print_r($location.$image_name);
-            $query = mysqli_query($con, "insert into subject(academy_id,subject_image,subject_name,insert_by) values('$academic_name','$db_path$image_name','$name',$insert_by)");
+            $query = mysqli_query($con, $query);
             if ($query) {
                 //echo "<p class='alert alert-success'>inserted success</p>";
                 header('location: ../addsubject.php?response=success&class=success&message=Record inserted Successfully');
