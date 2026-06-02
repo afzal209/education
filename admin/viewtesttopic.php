@@ -96,7 +96,7 @@ require_once dirname(__DIR__) .'/config.php';
                                                         <?php
                                                         if($_SESSION['user']['role'] == 'admin'){
                                                             ?>
- <th scope="col">Insert By</th>
+                                                        <th scope="col">Insert By</th>
                                                             <?php
                                                         }
 
@@ -148,26 +148,26 @@ require_once dirname(__DIR__) .'/config.php';
                                                          .'<td>'.$row['topic_name'].'</td>'
                                                          .'<td><img src="'.BASE_URL.$row['topic_image'].'" alt="'.$row['topic_name'].'" style="width: 100px; height: 100px;"></td>'
                                                           .'<td>'.$topic_embed.'</td>'
- .'<td>'.$row['topic_pic_description'].'</td>'
- .'<td>'.$row['topic_article'].'</td>'
+                                                            .'<td>'.$row['topic_pic_description'].'</td>'
+                                                            .'<td>'.$row['topic_article'].'</td>'
                                                            ;
 
                                                                                            
                                                               
-                                               if($_SESSION['user']['role'] == 'admin'){
-                                         echo '<td>'.$row['insert_by'].'</td>';
-                                        
-                                        }         
+                                                                if($_SESSION['user']['role'] == 'admin'){
+                                                            echo '<td>'.$row['insert_by'].'</td>';
+                                                            
+                                                            }         
                                                        
                                                        if($row['status_post'] == 1){
-                                            echo ' <td>Pending</td>';
-                                        }
-                                        elseif ($row['status_post'] == 2) {
-                                            echo '<td>Approve</td>';
-                                        }
-                                        elseif ($row['status_post'] == 3) {
-                                            echo '<td>Rejected</td>';
-                                        }
+                                                            echo ' <td>Pending</td>';
+                                                        }
+                                                        elseif ($row['status_post'] == 2) {
+                                                            echo '<td>Approve</td>';
+                                                        }
+                                                        elseif ($row['status_post'] == 3) {
+                                                            echo '<td>Rejected</td>';
+                                                        }
                                         
                                                         echo'
                                                         <td style="text-align : center">
