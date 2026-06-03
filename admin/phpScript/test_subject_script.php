@@ -25,8 +25,17 @@ if(isset($_POST['submit'])){
          else{
 $name = $_POST['text'];
         $insert_by = $_POST['insert_by'];
+
+
+if($_POST['role'] == 'admin'){
+    $query = "insert into test_subject(subject_image,subject_name,insert_by,status_post) values('$db_path$image_name','$name','$insert_by','2')";
+}
+else{
+    $query = "insert into test_subject(subject_image,subject_name,insert_by) values('$db_path$image_name','$name','$insert_by')";
+}
+
             if (move_uploaded_file($image, $location.$image_name)) {
-                $query = mysqli_query($con,"insert into test_subject(subject_image,subject_name,insert_by) values('$db_path$image_name','$name','$insert_by')");
+                $query = mysqli_query($con,$query);
         if ($query == 1) {
             header('location:../testsubject.php?response=success&class=success&message=Record Has Been inserted');
         }
