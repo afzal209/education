@@ -4,7 +4,8 @@
 
 if(isset($_POST['submit'])){
 
-    include('../db/connect.php');
+    require_once dirname(dirname(__DIR__)) .'/config.php';
+ 	include(BASE_PATH.'/db/connect.php');
 
 
 
@@ -39,13 +40,16 @@ if(isset($_POST['submit'])){
 
         $insert_by = $_POST['insert_by'];
 
-        $query=mysqli_query(
+        if($_POST['role'] == 'admin'){
+            $query = "insert into question (academy_id,subject_id,chapter_id,topic_id,question,correct,option1,option2,option3,option4,status,insert_by,status_post) values('$academic','$subject','$chapter','$topic','$new','$correct','$option1','$option2','$option3','$option4','inactive','$insert_by','2')";
+        }
+        else{
+            $query = "insert into question (academy_id,subject_id,chapter_id,topic_id,question,correct,option1,option2,option3,option4,status,insert_by) values('$academic','$subject','$chapter','$topic','$new','$correct','$option1','$option2','$option3','$option4','inactive','$insert_by')";
+        }
 
-            $con,"insert into question (academy_id,subject_id,chapter_id,topic_id,question,correct,option1,option2,option3,option4,status,insert_by)
 
-                    values('$academic','$subject','$chapter','$topic','$new','$correct','$option1','$option2','$option3','$option4','inactive','$insert_by')
 
-                ");
+        $query=mysqli_query($con,$query);
 
             if($query){
 
