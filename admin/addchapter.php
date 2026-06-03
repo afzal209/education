@@ -53,7 +53,7 @@ require_once dirname(__DIR__) .'/config.php';
                                     <form method="POST" action="<?php echo BASE_URL; ?>admin/phpScript/chapter_script.php"
                                         enctype="multipart/form-data">
                                         <input type="hidden" name="insert_by" value="<?php echo $_SESSION['user']['id']; ?>">
-                                        
+                                         <input type="hidden" name="role" value="<?=$_SESSION['user']['role']?>">
                                         <!-- Username -->
                                         <div class="mb-3">
                                             <label for="role" class="form-label">Academy</label>
