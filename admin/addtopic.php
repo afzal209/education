@@ -83,7 +83,7 @@
                                         enctype="multipart/form-data">
                                         <input type="hidden" name="insert_by"
                                             value="<?php echo $_SESSION['user']['id']; ?>">
-
+<input type="hidden" name="role" value="<?=$_SESSION['user']['role']?>">
                                         <!-- Username -->
                                         <div class="mb-3">
                                             <label for="role" class="form-label">Academy</label>

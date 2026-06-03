@@ -6,7 +6,8 @@
 
 if(isset($_POST['submit'])){
 
-    include('../db/connect.php');
+    require_once dirname(dirname(__DIR__)) .'/config.php';
+ 	include(BASE_PATH.'/db/connect.php');
 
     if(empty($_POST['subject']) || empty($_POST['name']) || empty($_POST['video']) || empty($_POST['article'])){
 
@@ -37,13 +38,26 @@ if(isset($_POST['submit'])){
 
         $insert_by = $_POST['insert_by'];    
         
+        
+
         if(preg_match('/youtube/',$video)){
 
                 //echo 'youtube';
+                
+
 
             $youtube_link=$video;
 
-            $query=mysqli_query($con,"insert into topic(academy_id,subject_id,chapter_id,topic_name,topic_embed,topic_article,insert_by) values('$academic','$subject','$chapter','$name','$youtube_link','$article','$insert_by')");
+
+             if($_POST['role'] == 'admin'){
+                $query = "insert into topic(academy_id,subject_id,chapter_id,topic_name,topic_embed,topic_article,insert_by,status_post) values('$academic','$subject','$chapter','$name','$youtube_link','$article','$insert_by','2')";
+             }
+             else{
+                 $query = "insert into topic(academy_id,subject_id,chapter_id,topic_name,topic_embed,topic_article,insert_by) values('$academic','$subject','$chapter','$name','$youtube_link','$article','$insert_by')";
+             }
+
+
+            $query=mysqli_query($con,$query);
 
             if($query){
 
@@ -64,7 +78,17 @@ if(isset($_POST['submit'])){
 
         $youtube_embed_link=$video;
 
-        $query=mysqli_query($con,"insert into topic(academy_id,subject_id,chapter_id,topic_name,topic_embed,topic_article,insert_by) values('$academic','$subject','$chapter','$name','$youtube_embed_link','$article','$insert_by')");
+
+        if($_POST['role'] == 'admin'){
+                $query = "insert into topic(academy_id,subject_id,chapter_id,topic_name,topic_embed,topic_article,insert_by,status_post) values('$academic','$subject','$chapter','$name','$youtube_embed_link','$article','$insert_by','2')";
+             }
+             else{
+                 $query = "insert into topic(academy_id,subject_id,chapter_id,topic_name,topic_embed,topic_article,insert_by) values('$academic','$subject','$chapter','$name','$youtube_embed_link','$article','$insert_by')";
+             }
+        
+
+
+        $query=mysqli_query($con,$query);
 
             if($query){
 
@@ -85,7 +109,14 @@ if(isset($_POST['submit'])){
 
             $dailymotion_link=$video;
 
-            $query=mysqli_query($con,"insert into topic(academy_id,subject_id,chapter_id,topic_name,topic_embed,topic_article,insert_by) values('$academic','$subject','$chapter','$name','$dailymotion_link','$article','$insert_by')");
+              if($_POST['role'] == 'admin'){
+                $query = "insert into topic(academy_id,subject_id,chapter_id,topic_name,topic_embed,topic_article,insert_by,status_post) values('$academic','$subject','$chapter','$name','$dailymotion_link','$article','$insert_by','2')";
+              }    
+                else{
+                    $query = "insert into topic(academy_id,subject_id,chapter_id,topic_name,topic_embed,topic_article,insert_by) values('$academic','$subject','$chapter','$name','$dailymotion_link','$article','$insert_by')";
+                }
+
+            $query=mysqli_query($con,$query);
 
             if($query){
 
@@ -105,8 +136,15 @@ if(isset($_POST['submit'])){
             //echo 'dailymotion';
 
             $dailymotion_embed_link=$video;
+            if($_POST['role'] == 'admin'){
+                            $query = "insert into topic(academy_id,subject_id,chapter_id,topic_name,topic_embed,topic_article,insert_by,status_post) values('$academic','$subject','$chapter','$name','$dailymotion_embed_link','$article','$insert_by','2')";
+                        }    
+                            else{
+                                $query = "insert into topic(academy_id,subject_id,chapter_id,topic_name,topic_embed,topic_article,insert_by) values('$academic','$subject','$chapter','$name','$dailymotion_embed_link','$article','$insert_by')";
+                            }
+            
 
-            $query=mysqli_query($con,"insert into topic(academy_id,subject_id,chapter_id,topic_name,topic_embed,topic_article,insert_by) values('$academic','$subject','$chapter','$name','$dailymotion_embed_link','$article','$insert_by')");
+            $query=mysqli_query($con,$query);
 
             if($query){
 
@@ -121,7 +159,6 @@ if(isset($_POST['submit'])){
             }
 
         }
-
         else{
 
             header('location:../addtopic.php?response=error&class=danger&message=This Video link is not supported');

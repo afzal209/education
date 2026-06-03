@@ -56,6 +56,8 @@
                                     <form method="POST" action="<?php echo BASE_URL; ?>admin/phpScript/test_subject_script.php"
                                         enctype="multipart/form-data">
                                         <input type="hidden" name="insert_by" value="<?php echo $_SESSION['user']['id']; ?>">
+<input type="hidden" name="role" value="<?=$_SESSION['user']['role']?>">
+
                                         <div class="mb-3">
                                             <div class="row">
                                                 <label for="image" class="form-label">Add Image</label>

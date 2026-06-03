@@ -38,8 +38,15 @@ require_once dirname(dirname(__DIR__)) .'/config.php';
 
         $insert_by = $_POST['insert_by'];    
      
+            if($_POST['role'] == 'admin'){
+                $query = "insert into chapter(academy_id,subject_id,chapter_name,insert_by,status_post) values('$academic','$subject','$name','$insert_by','2')";
+            }
+            else{
+                $query = "insert into chapter(academy_id,subject_id,chapter_name,insert_by) values('$academic','$subject','$name','$insert_by')";
+            }
+           
 
-            $query=mysqli_query($con,"insert into chapter(academy_id,subject_id,chapter_name,insert_by) values('$academic','$subject','$name','$insert_by')");
+            $query=mysqli_query($con,$query);
 
             if($query){
 

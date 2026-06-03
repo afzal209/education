@@ -38,13 +38,14 @@ if(isset($_POST['submit'])){
 
         $insert_by = $_POST['insert_by'];
 
-        $query=mysqli_query(
+         if($_POST['role'] == 'admin'){
+            $query = "insert into test_question(test_subject_id,test_chapter_id,test_topic_id,question,correct,option1,option2,option3,option4,insert_by,status_post) values('$subject','$chapter',$topic,'$new','$correct','$option1','$option2','$option3','$option4','$insert_by','2')";
+        }
+        else{
+            $query = "insert into test_question(test_subject_id,test_chapter_id,test_topic_id,question,correct,option1,option2,option3,option4,insert_by) values('$subject','$chapter',$topic,'$new','$correct','$option1','$option2','$option3','$option4','$insert_by')";
+        }
 
-            $con,"insert into test_question(test_subject_id,test_chapter_id,test_topic_id,question,correct,option1,option2,option3,option4,insert_by)
-
-                    values('$subject','$chapter',$topic,'$new','$correct','$option1','$option2','$option3','$option4','$insert_by')
-
-                ");
+        $query=mysqli_query($con,$query);
 
             if($query == 1){
 
