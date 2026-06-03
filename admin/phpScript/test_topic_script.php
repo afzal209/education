@@ -82,9 +82,14 @@ if(isset($_POST['submit'])){
 
             $youtube_link=$video;
 
+            if($_POST['role'] == 'admin'){
+                $query = "insert into topic(academy_id,subject_id,chapter_id,topic_name,topic_embed,topic_article,insert_by,status_post) values('$academic','$subject','$chapter','$name','$youtube_link','$article','$insert_by','2')";
+            }
+            else{
+                $query = "insert into topic(academy_id,subject_id,chapter_id,topic_name,topic_embed,topic_article,insert_by) values('$academic','$subject','$chapter','$name','$youtube_link','$article','$insert_by')";
+            }
 
-
-            $query=mysqli_query($con,"insert into test_topic(test_subject_id,test_chapter_id,topic_name,topic_embed,topic_article,lang,insert_by) values('$subject','$chapter','$topic','$youtube_link','$article','$lang','$insert_by')");
+            $query=mysqli_query($con,$query);
 
 
 
@@ -123,10 +128,15 @@ if(isset($_POST['submit'])){
 
 
             $youtube_embed_link=$video;
+            if($_POST['role'] == 'admin'){
+                $query = "insert into topic(academy_id,subject_id,chapter_id,topic_name,topic_embed,topic_article,insert_by,status_post) values('$academic','$subject','$chapter','$name','$youtube_embed_link','$article','$insert_by','2')";
+            }
+            else{
+                $query = "insert into topic(academy_id,subject_id,chapter_id,topic_name,topic_embed,topic_article,insert_by) values('$academic','$subject','$chapter','$name','$youtube_embed_link','$article','$insert_by')";
+            }
 
 
-
-            $query=mysqli_query($con,"insert into test_topic(test_subject_id,test_chapter_id,topic_name,topic_embed,topic_article,lang,insert_by) values('$subject','$chapter','$topic','$youtube_embed_link','$article','$lang','$insert_by')");
+            $query=mysqli_query($con,$query);
 
 
 
@@ -166,9 +176,15 @@ if(isset($_POST['submit'])){
 
                 $dailymotion_link=$video;
 
+                if($_POST['role'] == 'admin'){
+                    $query = "insert into topic(academy_id,subject_id,chapter_id,topic_name,topic_embed,topic_article,insert_by,status_post) values('$academic','$subject','$chapter','$name','$dailymotion_link','$article','$insert_by','2')";
+                }
+                else{
+                    $query = "insert into topic(academy_id,subject_id,chapter_id,topic_name,topic_embed,topic_article,insert_by) values('$academic','$subject','$chapter','$name','$dailymotion_link','$article','$insert_by')";
+                }
 
 
-                $query=mysqli_query($con,"insert into test_topic(test_subject_id,test_chapter_id,topic_name,topic_embed,topic_article,lang,insert_by) values('$subject','$chapter','$topic','$dailymotion_link','$article','$lang','$insert_by')");
+                $query=mysqli_query($con,$query);
 
 
 
@@ -210,7 +226,14 @@ if(isset($_POST['submit'])){
 
 
 
-                $query=mysqli_query($con,"insert into test_topic(test_subject_id,test_chapter_id,topic_name,topic_embed,topic_article,lang,insert_by) values('$subject','$chapter','$topic','$dailymotion_embed_link','$article','$lang','$insert_by')");
+                if($_POST['role'] == 'admin'){
+                    $query = "insert into topic(academy_id,subject_id,chapter_id,topic_name,topic_embed,topic_article,insert_by,status_post) values('$academic','$subject','$chapter','$name','$dailymotion_embed_link','$article','$insert_by','2')";
+                }
+                else{
+                    $query = "insert into topic(academy_id,subject_id,chapter_id,topic_name,topic_embed,topic_article,insert_by) values('$academic','$subject','$chapter','$name','$dailymotion_embed_link','$article','$insert_by')";
+                }
+
+                $query=mysqli_query($con,$query);
 
 
 
@@ -254,8 +277,16 @@ if(isset($_POST['submit'])){
 
         }
         else {
+             if($_POST['role'] == 'admin'){
+                $query = "insert into topic(academy_id,subject_id,chapter_id,topic_name,topic_embed,topic_article,insert_by,status_post) values('$academic','$subject','$chapter','$name','','$article','$insert_by','2')";   
+             }
+             else{
+                $query = "insert into topic(academy_id,subject_id,chapter_id,topic_name,topic_embed,topic_article,insert_by) values('$academic','$subject','$chapter','$name','','$article','$insert_by')";
+             }
+
+
             if(move_uploaded_file($image, $location.$image_name)){
-                $query=mysqli_query($con,"insert into test_topic(test_subject_id,test_chapter_id,topic_name,topic_pic_description,topic_image,topic_article,lang,insert_by) values('$subject','$chapter','$topic','$description','$db_path$image_name','$article','$lang','$insert_by')");
+                $query=mysqli_query($con,$query);
                 if($query){
                     header('location:../testtopic.php?response=success&class=success&message=Record Has Been inserted');
                 }
