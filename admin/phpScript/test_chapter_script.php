@@ -11,7 +11,14 @@ if(isset($_POST['submit'])){
         $chapter = $_POST['chapter'];
         $insert_by = $_POST['insert_by'];
 
-        $query =mysqli_query($con,"insert into test_chapter(test_subject_id,chapter_name,insert_by) values('$subject','$chapter','$insert_by')");
+        if($_POST['role'] == 'admin'){
+            $query = "insert into test_chapter(test_subject_id,chapter_name,insert_by,status_post) values('$subject','$chapter','$insert_by','2')";
+        }
+        else{
+            $query = "insert into test_chapter(test_subject_id,chapter_name,insert_by) values('$subject','$chapter','$insert_by')";
+        }
+
+        $query =mysqli_query($con,$query);
         if($query == 1){
             header('location:../testchapter.php?response=success&class=success&message=Record Has Been inserted');
         }
