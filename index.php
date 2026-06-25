@@ -91,29 +91,7 @@ include 'web_include/navbar.php';
        </div>
    </div>
 </section>
-<section class="page-section main">
-   <div class="container">
-       <div class="row">
-           <h1>Aptitude Test</h1>
 
-           <ul class="listings">
-                <?php
-                                                $view_academic = view_academic($con,'entrytest'); 
-                                                for ($i=0; $i < count($view_academic) ; $i++) { 
-                                                    // print_r($view_academic[$i]);
-                                                ?>
-                <li>
-                   <a href="subject.php?id=<?=$view_academic[$i]['id']?>"><img
-                           src="<?=$view_academic[$i]['academic_image']?>" width="140" height="140">
-                       <span><?=$view_academic[$i]['academic_name']?></span></a>
-                </li>
-                <?php 
-                                                }
-                                            ?>
-           </ul>
-       </div>
-   </div>
-</section>
 <section class="page-section main">
     <div class="container">
         <div class="row">
@@ -141,6 +119,31 @@ include 'web_include/navbar.php';
         </div>
     </div>
 </section>
+
+<section class="page-section main">
+   <div class="container">
+       <div class="row">
+           <h1>Aptitude Test</h1>
+
+           <ul class="listings">
+                <?php
+                                                $view_academic = view_academic($con,'entrytest'); 
+                                                for ($i=0; $i < count($view_academic) ; $i++) { 
+                                                    // print_r($view_academic[$i]);
+                                                ?>
+                <li>
+                   <a href="subject.php?id=<?=$view_academic[$i]['id']?>"><img
+                           src="<?=$view_academic[$i]['academic_image']?>" width="140" height="140">
+                       <span><?=$view_academic[$i]['academic_name']?></span></a>
+                </li>
+                <?php 
+                                                }
+                                            ?>
+           </ul>
+       </div>
+   </div>
+</section>
+
 
 <!-- <section class="page-section main">
             <div class="container">
