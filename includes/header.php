@@ -17,7 +17,7 @@ require_once dirname(__DIR__) .'/config.php';
     require_once(BASE_PATH.'function/title_script.php');
     
     ?>
-    <title>Moalym | </title>
+    <title>Wadeek | </title>
     <?php 
     
     ?>
