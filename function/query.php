@@ -11,7 +11,7 @@ function view_academic($con, $type = NULL)
         return $value;
     } else {
 
-        $query = "select * from academic where insert_type= '$type' and status_post =2";
+        $query = "select * from academic where insert_type= '$type' and status_post =2 and status_show =1";
         // echo $query;
         // exit;
         $my_query = mysqli_query($con, $query);
@@ -37,7 +37,7 @@ function view_subject($con, $type = NULL, $id = NULL)
         return $value;
     } else {
 
-        $query = "select subj.*,aca.academic_name from academic aca,subject subj where aca.id = subj.academy_id and subj.status_post =2 and subj.insert_type = '$type' and subj.academy_id='$id'  ";
+        $query = "select subj.*,aca.academic_name from academic aca,subject subj where aca.id = subj.academy_id and subj.status_post =2 and subj.status_show =1 and subj.insert_type = '$type' and subj.academy_id='$id'  ";
 
         $my_query = mysqli_query($con, $query);
         $value = array();
