@@ -57,7 +57,7 @@
                     </div>
                     <div class="pull-right hidden-xs">
                         <form action="" class="search-form">
-                            <div class="form-group has-feedback">
+                            <div class="form-group has-feedback" id="search_bar">
                                 <label for="search" class="sr-only">Search</label>
                                 <input type="text" class="form-control" name="search" id="search" placeholder="search">
                                 <span class="glyphicon glyphicon-search form-control-feedback"></span>
