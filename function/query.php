@@ -11,7 +11,7 @@ function view_academic($con, $type = NULL)
         return $value;
     } else {
 
-        $query = "select * from academic where insert_type= '$type' and status_post =2";
+        $query = "select * from academic where insert_type= '$type' and status_post =2 and status_show =1";
         // echo $query;
         // exit;
         $my_query = mysqli_query($con, $query);
