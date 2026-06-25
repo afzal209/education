@@ -4,3 +4,4 @@ config.php
 socialLogin/config.php
 img/*
 admin/img/*
+web_asset/images/*
