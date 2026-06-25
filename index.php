@@ -94,7 +94,7 @@ include 'web_include/navbar.php';
 <section class="page-section main">
    <div class="container">
        <div class="row">
-           <h1>Entry Test</h1>
+           <h1>Aptitude Test</h1>
 
            <ul class="listings">
                 <?php
@@ -117,7 +117,7 @@ include 'web_include/navbar.php';
 <section class="page-section main">
     <div class="container">
         <div class="row">
-            <h1>Job Test Preparation</h1>
+            <h1>Entry Test</h1>
 
             <ul class="listings">
                 <?php
