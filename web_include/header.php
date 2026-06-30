@@ -13,7 +13,7 @@
     
 
 <style>
-#search_bar {
+/* #search_bar {
     background: #0537ac;
     padding: 3px;
     border-radius: 4px;
@@ -32,7 +32,7 @@
 
 #search_bar .glyphicon-search {
     color: #fff;
-}
+} */
 
     
 </style>
