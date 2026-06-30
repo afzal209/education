@@ -108,7 +108,7 @@
 
                                                     <?php 
 
-                                                   $query=mysqli_query($con,'select subj.*,aca.academic_name from academic aca,subject subj where aca.id = subj.academy_id');
+                                                   $query=mysqli_query($con,'select subj.*,aca.academic_name from academic aca,subject subj where aca.id = subj.academy_id and subj.status_show = 1');
                                                     if(mysqli_num_rows($query) > 0){
                                                       while($row=mysqli_fetch_assoc($query)){ 
                                                         echo '<tr>'
