@@ -2,13 +2,17 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="logo"><img src="web_asset/images/flogo.png" alt=""></div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec
-                    ullamcorper mattis, pulvinar dapibus leo.adipiscing elit. Ut elit tellus, luctus nec
-                    ullamcorper mattis, pulvinar dapibus leo.</p>
+                <div class="logo"><img src="web_asset/images/Logo(2).png" alt=""></div>
+
+              <div class="col-md-12">
+<br>
             </div>
+                <p>Welcome to Wadeek.com, your trusted online learning platform for academic success and competitive exam preparation.</p>
+                <a href="" style="color: white;">Read More</a>
+            </div>
+          
             <div class="col-md-3 col-sm-6 col-xs-12">
-                <h3>Quick Links</h3>
+                <!-- <h3>Quick Links</h3>
                 <ul>
                     <li><a href="#">Academic</a></li>
                     <li><a href="#">Entry Teast</a></li>
@@ -16,18 +20,18 @@
                     <li><a href="#">Scholarship</a></li>
                     <li><a href="#">Job Adds</a></li>
                     <li><a href="#">Contact</a></li>
-                </ul>
+                </ul> -->
             </div>
 
             <div class="col-md-3 col-sm-6 col-xs-12">
-                <h3>Latest Jobs</h3>
+                <!-- <h3>Latest Jobs</h3>
                 <ul>
                     <li><a href="#">FPSC Jobs</a></li>
                     <li><a href="#">PPSC Jobs</a></li>
                     <li><a href="#">SPSC Jobs</a></li>
                     <li><a href="#">STS Jobs</a></li>
                     <li><a href="#">OTS Jobs</a></li>
-                </ul>
+                </ul> -->
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12">
                 <h3>SUBSCRIBE</h3>
@@ -57,7 +61,7 @@
             </div>
             <div class="col-md-6">
                 <p class="copyTxt">
-                    Copyright © 2023 Moalym.com </p>
+                    Copyright © 2023 safasolo.com </p>
             </div>
         </div>
     </div>
