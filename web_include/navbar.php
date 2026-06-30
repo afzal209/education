@@ -1,10 +1,10 @@
 <div class="container">
     <div class="row">
-        <div class="pull-left logo"><img src="web_asset/images/logo.png" alt=""></div>
+        <div class="pull-left logo"><img src="web_asset/images/Logo(2).png" alt=""></div>
         <div class="pull-right login"><a href="login.php" class="btn">Student Login</a></div>
     </div>
 </div>
-<section class="menubar">
+<section class="menubar" style="background: #0537ac;">
     <div class="container">
         <div class="row">
             <nav class="navbar">
